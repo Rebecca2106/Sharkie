@@ -3,18 +3,29 @@
 class World {
 
     character = new Character();
+
+    bubbles = [
+        new Bubble(),
+        new Bubble(),
+        new Bubble(),
+        new Bubble(),
+    ]
+
+    pufferfishes =[
+        new Pufferfish(),
+        new Pufferfish()
+    ]
+
     enemies = [
         new Jellyfish(),
         new Jellyfish(),
         new Jellyfish(),
     ];
-    bubbles = [
-        new Bubble(),
-        new Bubble(),
-
-    ]
     backgroundObjects = [
-        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/D.png', 0)
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/5. Water/L.png', 0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/L2.png', 0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/4.Fondo 2/L1.png', 0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/2. Floor/L2.png', 0),
     ]
 
     canvas;
@@ -29,10 +40,11 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //sonst würde der Hai mehrmals auftauchen, wenn er an einer anderen Stelle nochmal aufgerufen wird oder sich bewegen soll
         this.addObjectsToMap(this.backgroundObjects);
-        this.addTomap(this.character);
-
-        this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.bubbles);
+        this.addObjectsToMap(this.pufferfishes);
+        this.addTomap(this.character);
+        this.addObjectsToMap(this.enemies);
+  
         
 
         let self = this;                     //this ist bei requestAnimationFrame nicht bekannt deswegen muss es vorher nochmal in die Varbiable geschmisen werden
