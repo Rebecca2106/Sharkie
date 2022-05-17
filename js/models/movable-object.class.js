@@ -6,6 +6,8 @@ class MovableObject {
     width = 150;
     imageCache={};
     currentImage=0;
+    speed= 2;
+
 
     loadImage(path) {
         this.img = new Image();
@@ -22,6 +24,12 @@ class MovableObject {
 
     moveRight() {                        //function ist nicht nötig, OOP ist recht neu in JS, funktioniert ohne das Wort
         console.log('Moving right');            //Schablone welche Felder zu einen objekt gehören sollen
+    }
+
+    moveLeft(){
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 1000/45);
     }
 
     moveUpandDown() {
