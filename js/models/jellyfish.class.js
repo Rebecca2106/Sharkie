@@ -1,4 +1,4 @@
-let i = 0;
+
 class Jellyfish extends MovableObject {
 
     height = 45;
@@ -20,6 +20,7 @@ class Jellyfish extends MovableObject {
         this.y = (Math.floor(Math.random() * 450));
         this.middleX = this.x; //Konstante um die ich herumschwimme
         this.moveUpDown();
+        this.moveLeftRight();
         this.loadImages(this.Jellyfish_Swim);
         this.animate(this.Jellyfish_Swim);
 
@@ -42,25 +43,34 @@ class Jellyfish extends MovableObject {
         setInterval(() => {
             if (this.direction) {
                 this.y -= 1;
+                if (this.y < 30) {
+                    this.direction = false;
+                }
             }
-            if (this.y < 30) {
-                this.direction = false;
+            if (!this.direction) {
+                this.y += 1;
+
+                if (this.y > 430) {
+                    this.direction = true;
+                }
+
             }
-            if (this.borderMovement >= this.middleX - this.x) {
+        }
+
+            , 1000 / 50);
+    }
+
+    
+    moveLeftRight() {
+    
+        setInterval(() => {
+            if (this.x <this.middleX-this.borderMovement) {
+                this.x += 1;
+            }
+
+            if (this.x >this.middleX+this.borderMovement) {
                 this.x -= 1;
             }
-
-
-            if (!this.direction) {
-                    this.y += 1;            
-            }
-            if (this.borderMovement <= this.middleX - this.x) {     
-                this.x += 1;}
-
-            if (this.y > 430) {
-                this.direction = true;
-            }
-
         }
 
             , 1000 / 50);
