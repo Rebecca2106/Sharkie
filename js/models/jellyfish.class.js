@@ -1,4 +1,4 @@
-
+let i = 0;
 class Jellyfish extends MovableObject {
 
     height = 45;
@@ -62,13 +62,12 @@ class Jellyfish extends MovableObject {
 
     
     moveLeftRight() {
-    
         setInterval(() => {
             if (this.x <this.middleX-this.borderMovement) {
                 this.x += 1;
             }
 
-            if (this.x >this.middleX+this.borderMovement) {
+            if (this.x >this.middleX-this.borderMovement) {
                 this.x -= 1;
             }
         }
