@@ -24,15 +24,27 @@ class World {
         new Jellyfish(),
     ];
     backgroundObjects = [
-        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/5. Water/L.png', 0),
-        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/L2.png', 0),
-        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/4.Fondo 2/L1.png', 0),
-        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/2. Floor/L2.png', 0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/5. Water/L.png', 0,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/L2.png', 0,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/4.Fondo 2/L1.png', 0,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/2. Floor/L2.png', 0,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/5. Water/L.png', 720,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/L2.png', 720,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/4.Fondo 2/L2.png', 720,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/2. Floor/L.png', 720,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Barrier/3.png', 720,-350),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Barrier/4.png', 20,-350),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/5. Water/L.png', 1440,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/3.Fondo 1/L.png', 1440,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/4.Fondo 2/L1.png', 1440,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/2. Floor/L1.png', 1440,0),
+        new BackroundObjects('Alternative Grafiken - Sharkie/3. Background/Layers/1. Light/1.png', 1440,0),
     ]
 
     canvas;
     ctx;
     keyboard;
+    camera_x=0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -48,11 +60,13 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //sonst würde der Hai mehrmals auftauchen, wenn er an einer anderen Stelle nochmal aufgerufen wird oder sich bewegen soll
-        this.addObjectsToMap(this.backgroundObjects);
+        this.ctx.translate(this.camera_x,0) // verschiebung von der x und y-achse
+        this.addObjectsToMap(this.backgroundObjects)
         this.addObjectsToMap(this.bubbles);
         this.addObjectsToMap(this.pufferfishes);
         this.addTomap(this.character);
         this.addObjectsToMap(this.enemies);
+        this.ctx.translate(-this.camera_x,0)
   
         
 

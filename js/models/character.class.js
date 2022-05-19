@@ -44,6 +44,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.Down){
                 this.y +=this.speed;
             }
+            this.world.camera_x = -this.x;  //soweit wie der Fisch geschwommen ist, soll die Camera nach rechts verschoben werden
 
         }, 1000 / 60);
 
