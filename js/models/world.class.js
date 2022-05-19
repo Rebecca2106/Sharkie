@@ -39,6 +39,11 @@ class World {
         this.canvas = canvas;
         this.keyboard=keyboard;
         this.draw();
+        this.setWorld();
+    }
+
+    setWorld(){
+        this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
     }
 
     draw() {
@@ -64,7 +69,21 @@ class World {
     }
 
     addTomap(mo) {
+        if (mo.otherDirection){
+            this.ctx.save();
+            this.ctx.translate(mo.width , 0); //sonst springt er um die breite vor/zurück im canvas
+            this.ctx.scale(-1,1);
+            mo.x = mo.x*-1;
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
+
+        if (mo.otherDirection){
+            mo.x =mo.x *-1;
+            this.ctx.restore();
+        }
+     
+    
+
     }
 
 }

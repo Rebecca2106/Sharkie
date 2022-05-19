@@ -1,4 +1,4 @@
-let i = 0;
+
 class Jellyfish extends MovableObject {
 
     height = 45;
@@ -6,7 +6,6 @@ class Jellyfish extends MovableObject {
     img;
     direction = true;
     middleX;
-    borderMovement = Math.round((Math.random() * 30) + 10);
 
     Jellyfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png',
@@ -23,6 +22,7 @@ class Jellyfish extends MovableObject {
         this.moveLeftRight();
         this.loadImages(this.Jellyfish_Swim);
         this.animate(this.Jellyfish_Swim);
+        this.i = this.borderMovement;
 
 
     }
@@ -60,20 +60,42 @@ class Jellyfish extends MovableObject {
             , 1000 / 50);
     }
 
-    
-    moveLeftRight() {
-        setInterval(() => {
-            if (this.x <this.middleX-this.borderMovement) {
-                this.x += 1;
-            }
 
-            if (this.x >this.middleX-this.borderMovement) {
-                this.x -= 1;
+
+    moveLeftRight() {
+
+        let movment=Math.round(Math.random() * 30)+10;
+        let i=0;
+        let moverightInterval = setInterval(() => {
+            this.x += 1;
+            i++;
+            if (this.x > 600 || this.x < 10 || i>movment) {
+                clearInterval(moverightInterval)
+
             }
         }
 
-            , 1000 / 50);
+            , 1000 / 50,);
+
+            setTimeout(() => {
+            
+            let moveleftInterval = setInterval(() => {
+                this.x -= 1;
+                i--;
+                if (this.x > 600 || this.x < 10 || i==0) {
+                    clearInterval(moveleftInterval)
+    
+                }
+            }
+    
+                , 1000 / 50,);
+        }, 3000);
+
     }
+
+    
+
+
 }
 
 
