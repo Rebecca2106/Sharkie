@@ -5,7 +5,9 @@ class Jellyfish extends MovableObject {
     width = 45;
     img;
     direction = true;
+    directionX = true;
     middleX;
+    movement= Math.random() *50;
 
     Jellyfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png',
@@ -64,34 +66,26 @@ class Jellyfish extends MovableObject {
 
     moveLeftRight() {
 
-        let movment=Math.round(Math.random() * 30)+10;
-        let i=0;
-        let moverightInterval = setInterval(() => {
-            this.x += 1;
-            i++;
-            if (this.x > 600 || this.x < 10 || i>movment) {
-                clearInterval(moverightInterval)
+        setInterval(() => {
+            if (this.directionX) {
+                this.x -= 1;
+                if (this.x <this.middleX - this.movement) {
+                    this.directionX = false;
+                }
+            }
+            if (!this.directionX) {
+                this.x += 1;
+
+                if (this.x >this.middleX + this.movement) {
+                    this.directionX = true;
+                }
 
             }
         }
 
-            , 1000 / 50,);
-
-            setTimeout(() => {
-            
-            let moveleftInterval = setInterval(() => {
-                this.x -= 1;
-                i--;
-                if (this.x > 600 || this.x < 10 || i==0) {
-                    clearInterval(moveleftInterval)
-    
-                }
-            }
-    
-                , 1000 / 50,);
-        }, 3000);
-
+            , 1000 / 50);
     }
+
 
     
 
