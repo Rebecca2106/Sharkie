@@ -23,15 +23,11 @@ class Pufferfish extends MovableObject {
 
 
 
-animate(array) {
+animate() {
     this.moveLeft();
 
     setInterval(() => {
-        let i= this.currentImage % array.length; //let i= 5 % 6 = 0 Rest 5; ganzzahliger Rest einer Division 
-        //let i = 7 % 6; =>1, Rest 1!   i= 0, 1, 2, 3, 4, 5, 0
-        let path = array[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+      this.playAnimation(this.Pufferfish_Swim)
 
     }, 1000/4);
 

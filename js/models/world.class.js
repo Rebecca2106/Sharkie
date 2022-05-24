@@ -3,7 +3,7 @@
 class World {
 
     character = new Character();
-
+    level = level1;
     bubbles = level1.bubbles;
     pufferfishes = level1.pufferfishes;
     enemies = level1.enemies;
@@ -29,11 +29,11 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //sonst würde der Hai mehrmals auftauchen, wenn er an einer anderen Stelle nochmal aufgerufen wird oder sich bewegen soll
         this.ctx.translate(this.camera_x, 0) // verschiebung von der x und y-achse
-        this.addObjectsToMap(this.backgroundObjects)
-        this.addObjectsToMap(this.bubbles);
-        this.addObjectsToMap(this.pufferfishes);
+        this.addObjectsToMap(this.level.backgroundObjects)
+        this.addObjectsToMap(this.level.bubbles);
+        this.addObjectsToMap(this.level.pufferfishes);
         this.addTomap(this.character);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0)
 
 

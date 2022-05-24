@@ -1,0 +1,3 @@
+class special extends Jellyfish {
+    
+}

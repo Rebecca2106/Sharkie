@@ -3,6 +3,7 @@ class Level {
     pufferfishes;
     enemies;
     backgroundObjects;
+    level_end_x =1600;
 
     constructor(bubbles, pufferfishes,enemies,backgroundObjects){
         this.bubbles = bubbles;
