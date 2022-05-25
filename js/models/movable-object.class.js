@@ -23,12 +23,17 @@ class MovableObject {
     }
 
     moveRight() {                        //function ist nicht nötig, OOP ist recht neu in JS, funktioniert ohne das Wort
-        console.log('Moving right');            //Schablone welche Felder zu einen objekt gehören sollen
+        this.x += this.speed;           //Schablone welche Felder zu einen objekt gehören sollen
     }
 
     moveLeft(){
+        this.x -= this.speed;
+    }
+
+    moveAutoLeft(){
         setInterval(() => {
-            this.x -= this.speed;
+            if (this.x >-200){
+            this.x -= this.speed;}
         }, 1000/45);
     }
 

@@ -5,8 +5,10 @@ class World {
     character = new Character();
     level = level1;
     bubbles = level1.bubbles;
+    coins= level1.coins;
     pufferfishes = level1.pufferfishes;
     enemies = level1.enemies;
+    endboss= level1.endboss;
     backgroundObjects= level1.backgroundObjects;
 
     canvas;
@@ -31,7 +33,9 @@ class World {
         this.ctx.translate(this.camera_x, 0) // verschiebung von der x und y-achse
         this.addObjectsToMap(this.level.backgroundObjects)
         this.addObjectsToMap(this.level.bubbles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.pufferfishes);
+        this.addObjectsToMap(this.level.endboss);
         this.addTomap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0)

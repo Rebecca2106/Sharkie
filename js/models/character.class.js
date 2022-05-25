@@ -6,16 +6,31 @@ class Character extends MovableObject {
     y = 200;
     img;
     speed = 5;
-    otherDirection=false;
+    otherDirection = false;
 
 
-    Sharkie_Swim = ['Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/2.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/3.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/4.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/5.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/6.png'
-    ];
+    Sharkie_Swim =
+        [
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/2.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/3.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/4.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/5.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/6.png'
+        ];
+    Sharkie_Finslap =
+        [
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/1.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/2.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/3.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/4.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/5.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/6.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/7.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/8.png',
+
+        ]
+
     world;
     currentImage = 0;
     ocean = new Audio('audio/ocean.mp3');
@@ -24,31 +39,33 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.Sharkie_Swim);
-        this.animate(this.Sharkie_Swim);
+        this.loadImages(this.Sharkie_Finslap);
+        this.animate(this.Sharkie_Finslap);
     }
 
-    animate(array) {
+    animate() {
 
         setInterval(() => {
             this.ocean.pause();
-            if (this.world.keyboard.Right && this.x <this.world.level.level_end_x) {
-                this.x += this.speed;
+            if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
+                this.otherDirection = false; 
+                this.moveRight();
                 this.ocean.play();
-                this.otherDirection=false;
             }
-            if (this.world.keyboard.Left && this.x >0) {
-                this.x -= this.speed;
-                this.ocean.play();
-                this.otherDirection=true;
-            }
-            if (this.world.keyboard.Up && this.y >-80){
-                this.y -=this.speed;
-                this.ocean.play();
 
-                
+            if (this.world.keyboard.Left && this.x > 0) {
+                this.otherDirection = true;
+                this.moveLeft();
+                this.ocean.play();
             }
-            if (this.world.keyboard.Down && this.y <380){
-                this.y +=this.speed;
+            if (this.world.keyboard.Up && this.y > -80) {
+                this.y -= this.speed;
+                this.ocean.play();
+            }
+
+
+            if (this.world.keyboard.Down && this.y < 380) {
+                this.y += this.speed;
                 this.ocean.play();
 
             }
@@ -58,9 +75,12 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.world.keyboard.Right || this.world.keyboard.Left) {
+                this.playAnimation(this.Sharkie_Swim);
+            }
+            if (this.world.keyboard.Space){
+                this.playAnimation(this.Sharkie_Finslap);
+            }
 
-                this.playAnimation(this.Sharkie_Swim);}
-        
 
         }, 1000 / 10); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
 

@@ -23,7 +23,11 @@ window.addEventListener("keydown", (e) => {
     } else if (e.keyCode == 39) {
         console.log('right arrow pressed')
         keyboard.Right = true;
+    } else if (e.keyCode == 32) {
+        console.log('space pressed')
+        keyboard.Space = true;
     }
+    
 });
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 38) {
@@ -38,7 +42,9 @@ window.addEventListener("keyup", (e) => {
     } else if (e.keyCode == 39) {
         console.log('right arrow not longer pressed')
         keyboard.Right = false;
-    }
+    }  else if (e.keyCode == 32) {
+        console.log('space not longer pressed')
+        keyboard.Space = false;}
 });
 
 

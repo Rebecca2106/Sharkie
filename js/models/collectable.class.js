@@ -1,0 +1,34 @@
+class Coins extends MovableObject {
+
+    width =30;
+    height =30;
+
+
+
+    CoinRotate = [
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 1.png',
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 2.png',
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 3.png',
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 4.png',
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 5.png',
+        'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 6.png',
+    ]
+    
+    constructor() {
+        super().loadImage(this.CoinRotate[0]);
+        this.loadImages(this.CoinRotate);
+        this.animate(this.CoinRotate);
+        this.x = 400;
+        this.y = 200;
+     
+    }
+
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.CoinRotate)
+
+        }, 1000 / 6);
+
+    }
+
+}
