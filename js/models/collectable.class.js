@@ -2,6 +2,8 @@ class Coins extends MovableObject {
 
     width =30;
     height =30;
+    speed =20;
+
 
 
 
@@ -16,10 +18,11 @@ class Coins extends MovableObject {
     
     constructor() {
         super().loadImage(this.CoinRotate[0]);
+        this.x = 400;
+        this.y -=30;
         this.loadImages(this.CoinRotate);
         this.animate(this.CoinRotate);
-        this.x = 400;
-        this.y = 200;
+  
      
     }
 

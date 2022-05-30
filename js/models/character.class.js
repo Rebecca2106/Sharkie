@@ -40,7 +40,7 @@ class Character extends MovableObject {
         super().loadImage('Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.Sharkie_Swim);
         this.loadImages(this.Sharkie_Finslap);
-        this.animate(this.Sharkie_Finslap);
+        this.animate();
     }
 
     animate() {
@@ -78,7 +78,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.Sharkie_Swim);
             }
             if (this.world.keyboard.Space){
-                this.playAnimation(this.Sharkie_Finslap);
+                this.playAnimationOnce(this.Sharkie_Finslap);
             }
 
 

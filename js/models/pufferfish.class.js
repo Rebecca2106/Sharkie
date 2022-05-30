@@ -2,6 +2,7 @@ class Pufferfish extends MovableObject {
     height = 55;
     width = 80;
     img;
+    otherDirection = false;
 
 
     Pufferfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png',
@@ -25,8 +26,19 @@ class Pufferfish extends MovableObject {
 
 animate() {
     setInterval(() => {
-        if (this.x >-200){
-            this.moveLeft();}
+        if (!this.otherDirection){
+            this.moveLeft();
+            if(this.x <30){
+                this.otherDirection=true;
+            }
+        }
+        if (this.otherDirection) {
+            this.moveRight();
+            if (this.x > 1530) {
+                this.otherDirection=false;
+            }
+
+        }
     }, 1000/45);
   
     setInterval(() => {
