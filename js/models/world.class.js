@@ -6,7 +6,7 @@ class World {
     level = level1;
     bubbles = level1.bubbles;
     coins = level1.coins;
-    pufferfishes = level1.pufferfishes;
+    // pufferfishes = level1.pufferfishes;
     enemies = level1.enemies;
     endboss = level1.endboss;
     backgroundObjects = level1.backgroundObjects;
@@ -44,21 +44,21 @@ class World {
             })
 
         },1000);
-        setInterval(() => {
-            this.level.pufferfishes.forEach((pufferfish) =>{
-                if (this.character.isColliding(pufferfish)){
-                    console.log('Collision with Caracter', pufferfish)
-                    this.character.loseEnergy(pufferfish);
-                    console.log(this.character.energy)
-                    if (this.character.isDead()){
-                        this.character.playAnimation(this.character.Sharkie_isDead)
+        // setInterval(() => {
+        //     this.level.pufferfishes.forEach((pufferfish) =>{
+        //         if (this.character.isColliding(pufferfish)){
+        //             console.log('Collision with Caracter', pufferfish)
+        //             this.character.loseEnergy(pufferfish);
+        //             console.log(this.character.energy)
+        //             if (this.character.isDead()){
+        //                 this.character.playAnimation(this.character.Sharkie_isDead)
 
-                    }
-                }
+        //             }
+        //         }
 
-            })
+        //     })
 
-        },1000)
+        // },1000)
     }
 
     draw() {
@@ -67,7 +67,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects)
         this.addObjectsToMap(this.level.bubbles);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.pufferfishes);
+        // this.addObjectsToMap(this.level.pufferfishes);
         this.addObjectsToMap(this.level.endboss);
         this.addTomap(this.character);
         this.addObjectsToMap(this.level.enemies);
