@@ -8,6 +8,7 @@ class Jellyfish extends MovableObject {
     directionX = true;
     middleX;
     movement= Math.random() *50;
+    damage =10;
 
     Jellyfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png',

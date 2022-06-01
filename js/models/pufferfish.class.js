@@ -3,6 +3,7 @@ class Pufferfish extends MovableObject {
     width = 80;
     img;
     otherDirection = false;
+    damage =5;
 
 
     Pufferfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png',

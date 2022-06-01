@@ -27,6 +27,7 @@ class World {
 
     setWorld() {
         this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
+
     }
 
     checkCollisions(){
@@ -34,6 +35,11 @@ class World {
             this.level.enemies.forEach((enemie) =>{
                 if (this.character.isColliding(enemie)){
                     console.log('Collision with Caracter', enemie)
+                    this.character.loseEnergy(enemie);
+                    console.log(this.character.energy)
+                    if (this.character.isDead()){
+                        this.character.playAnimation(this.character.Sharkie_isDead)
+                    }
                 }
             })
 
@@ -42,7 +48,14 @@ class World {
             this.level.pufferfishes.forEach((pufferfish) =>{
                 if (this.character.isColliding(pufferfish)){
                     console.log('Collision with Caracter', pufferfish)
+                    this.character.loseEnergy(pufferfish);
+                    console.log(this.character.energy)
+                    if (this.character.isDead()){
+                        this.character.playAnimation(this.character.Sharkie_isDead)
+
+                    }
                 }
+
             })
 
         },1000)

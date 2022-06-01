@@ -7,6 +7,9 @@ class MovableObject {
     imageCache = {};
     currentImage = 0;
     speed = 2;
+    energy = 100;
+    damage;
+    
 
 
     loadImage(path) {
@@ -73,10 +76,24 @@ class MovableObject {
         }
     }
 
-    isColliding(mo){
+    isColliding(mo) {
         return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x + mo.width &&
-        this.y < mo.y + mo.height
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width &&
+            this.y < mo.y + mo.height
     }
+
+
+    loseEnergy(enemie) {
+        this.energy -= enemie.damage;
+        if (this.energy < 0) {
+            this.energy = 0
+        }
+    }
+
+    isDead(){
+        return this.energy==0;
+    }
+
+
 }

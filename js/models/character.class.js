@@ -9,6 +9,7 @@ class Character extends MovableObject {
     otherDirection = false;
 
 
+
     Sharkie_Swim =
         [
             'Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png',
@@ -29,7 +30,37 @@ class Character extends MovableObject {
             'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/7.png',
             'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Fin slap/8.png',
 
-        ]
+        ];
+
+    Sharkie_isDead = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/3.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/4.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/5.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/6.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/7.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/8.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/9.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/10.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/11.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/12.png',
+    ];
+
+    Sharkie_hurt_poisened = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/1.Poisoned/5.png',
+    ];
+
+    Sharkie_hurt_electric = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+
+    ]
 
     world;
     currentImage = 0;
@@ -40,6 +71,9 @@ class Character extends MovableObject {
         super().loadImage('Alternative Grafiken - Sharkie/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.Sharkie_Swim);
         this.loadImages(this.Sharkie_Finslap);
+        this.loadImages(this.Sharkie_isDead);
+        this.loadImages(this.Sharkie_hurt_poisened);
+        this.loadImages(this.Sharkie_hurt_electric);
         this.animate();
     }
 
@@ -48,7 +82,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.ocean.pause();
             if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
-                this.otherDirection = false; 
+                this.otherDirection = false;
                 this.moveRight();
                 this.ocean.play();
             }
@@ -74,10 +108,14 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.world.keyboard.Right || this.world.keyboard.Left) {
-                this.playAnimation(this.Sharkie_Swim);
+            if (this.isDead()){
+                this.playAnimation(this.Sharkie_isDead)
             }
-            if (this.world.keyboard.Space){
+
+            if (this.world.keyboard.Right || this.world.keyboard.Left) {
+                    this.playAnimation(this.Sharkie_Swim);
+                }
+            if (this.world.keyboard.Space) {
                 this.playAnimationOnce(this.Sharkie_Finslap);
             }
 

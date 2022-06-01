@@ -3,7 +3,7 @@ class Endboss extends MovableObject{
     height =300;
     width = 300;
     y = 0;
-    intro= true;
+    intro= false;
 
 
 
@@ -51,6 +51,7 @@ class Endboss extends MovableObject{
         }
 
         animate() {
+            let i=0;
             setInterval(() => {
                 this.playAnimation(this.Endboss_Intro);
                 
