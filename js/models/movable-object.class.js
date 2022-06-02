@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObject {
     x = 0;
     y = 0;
     img;
@@ -9,21 +9,10 @@ class MovableObject {
     speed = 2;
     energy = 100;
     damage;
-    
+    lastHit = 0;
+    collison_with;
 
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(array) {
-        array.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
 
     moveRight() {                        //function ist nicht nötig, OOP ist recht neu in JS, funktioniert ohne das Wort
         this.x += this.speed;           //Schablone welche Felder zu einen objekt gehören sollen
@@ -62,10 +51,6 @@ class MovableObject {
         }
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Jellyfish || this instanceof Pufferfish) {   // damit der Frame nicht um den Münzen und backgrounsObjects liegt
             ctx.beginPath();
@@ -86,13 +71,30 @@ class MovableObject {
 
     loseEnergy(enemie) {
         this.energy -= enemie.damage;
+        if (enemie instanceof Jellyfish) {
+            this.collison_with = "jellyfish";
+        }
+        else {
+            this.collison_with = "pufferfish";
+        }
         if (this.energy < 0) {
-            this.energy = 0
+            this.energy = 0;
+        }
+        else {
+            this.lastHit = new Date().getTime();
         }
     }
 
-    isDead(){
-        return this.energy==0;
+    isDead() {
+        return this.energy == 0;
+    }
+
+    isHurt() {
+
+        let timepassed = new Date().getTime() - this.lastHit  //Differenz in MS
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
+
     }
 
 

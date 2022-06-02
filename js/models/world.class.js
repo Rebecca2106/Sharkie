@@ -10,11 +10,16 @@ class World {
     enemies = level1.enemies;
     endboss = level1.endboss;
     backgroundObjects = level1.backgroundObjects;
+    CoinBar= new Statusbar(-100,-10,'Coinbar');
+    LifeBar= new Statusbar(-100,60,'Lifebar');
+    PoisonBar = new Statusbar(-100,25,'Poisonbar');
+
 
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -27,7 +32,6 @@ class World {
 
     setWorld() {
         this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
-
     }
 
     checkCollisions(){
@@ -70,6 +74,9 @@ class World {
         // this.addObjectsToMap(this.level.pufferfishes);
         this.addObjectsToMap(this.level.endboss);
         this.addTomap(this.character);
+        this.addTomap(this.CoinBar);
+        this.addTomap(this.LifeBar);
+        this.addTomap(this.PoisonBar);
         this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0)
 
@@ -93,7 +100,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {

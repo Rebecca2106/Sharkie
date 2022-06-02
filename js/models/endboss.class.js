@@ -35,15 +35,14 @@ class Endboss extends MovableObject{
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/10.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/11.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/12.png',
-        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/13.png',
-
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
 
         constructor() {
             super().loadImage(this.Endboss_Intro[0]);
             this.loadImages(this.Endboss_Intro);
-            this.loadImage(this.Endboss_Swim);
+            this.loadImages(this.Endboss_Swim);
             this.animate(this.Endboss_Intro);
             this.x = 1500;
        

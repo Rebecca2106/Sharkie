@@ -108,16 +108,28 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isDead()){
-                this.playAnimation(this.Sharkie_isDead)
+            if (this.isDead()) {
+                this.playAnimation(this.Sharkie_isDead);
             }
 
-            if (this.world.keyboard.Right || this.world.keyboard.Left) {
-                    this.playAnimation(this.Sharkie_Swim);
+            else if (this.isHurt()) {
+                if (this.collison_with == "jellyfish") {
+                    this.playAnimation(this.Sharkie_hurt_electric)
                 }
-            if (this.world.keyboard.Space) {
-                this.playAnimationOnce(this.Sharkie_Finslap);
+                if (this.collison_with == "pufferfish") {
+                    this.playAnimation(this.Sharkie_hurt_poisened)
+                }
             }
+
+            else if (this.world.keyboard.Right || this.world.keyboard.Left) {
+                this.playAnimation(this.Sharkie_Swim);
+            }
+            else {
+                if (this.world.keyboard.Space) {
+                    this.playAnimationOnce(this.Sharkie_Finslap);
+                }
+            }
+
 
 
         }, 1000 / 10); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
