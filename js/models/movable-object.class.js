@@ -11,6 +11,7 @@ class MovableObject extends DrawableObject {
     damage;
     lastHit = 0;
     collison_with;
+    puffered;
 
 
 
@@ -68,34 +69,43 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height
     }
 
+    isNextto(mo) {
+        if (mo instanceof Pufferfish){
+            return (this.x + this.width) - mo.x < 50 && (this.x + this.width) - mo.x > 0 || (this.y + this.height) - mo.y < 50 && (this.y + this.height) - mo.y > 0
+    }}
 
-    loseEnergy(enemie) {
-        this.energy -= enemie.damage;
-        if (enemie instanceof Jellyfish) {
-            this.collison_with = "jellyfish";
-        }
-        else {
-            this.collison_with = "pufferfish";
-        }
-        if (this.energy < 0) {
-            this.energy = 0;
-        }
-        else {
-            this.lastHit = new Date().getTime();
-        }
+
+
+
+
+
+loseEnergy(enemie) {
+    this.energy -= enemie.damage;
+    if (enemie instanceof Jellyfish) {
+        this.collison_with = "jellyfish";
     }
-
-    isDead() {
-        return this.energy == 0;
+    else {
+        this.collison_with = "pufferfish";
     }
-
-    isHurt() {
-
-        let timepassed = new Date().getTime() - this.lastHit  //Differenz in MS
-        timepassed = timepassed / 1000;
-        return timepassed < 1;
-
+    if (this.energy < 0) {
+        this.energy = 0;
     }
+    else {
+        this.lastHit = new Date().getTime();
+    }
+}
+
+isDead() {
+    return this.energy == 0;
+}
+
+isHurt() {
+
+    let timepassed = new Date().getTime() - this.lastHit  //Differenz in MS
+    timepassed = timepassed / 1000;
+    return timepassed < 1;
+
+}
 
 
 }

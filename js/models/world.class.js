@@ -27,6 +27,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkdistance();
         this.checkCollisions();
     }
 
@@ -34,11 +35,23 @@ class World {
         this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
     }
 
+    checkdistance(){
+        setInterval(() => {
+            this.level.enemies.forEach((enemie) =>{
+                if (this.character.isNextto(enemie)){
+                    console.log('Next to', enemie)
+                    
+                }
+            })
+
+        },1000);
+    }
+
     checkCollisions(){
         setInterval(() => {
             this.level.enemies.forEach((enemie) =>{
                 if (this.character.isColliding(enemie)){
-                    console.log('Collision with Caracter', enemie)
+                    // console.log('Collision with Caracter', enemie)
                     this.character.loseEnergy(enemie);
                     console.log(this.character.energy)
                     if (this.character.isDead()){
