@@ -14,6 +14,7 @@ class Statusbar extends DrawableObject {
         this.y = y;
         this.type = type;
         this.loadImage(`Alternative Grafiken - Sharkie/4. Marcadores/orange/0_${type}.png`);
+    
 
     }
 
@@ -31,7 +32,6 @@ class Statusbar extends DrawableObject {
     ]
 
     percentage = 100;
-
 
 
 

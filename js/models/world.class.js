@@ -41,6 +41,7 @@ class World {
                 if (this.character.isNextto(enemie)){
                     console.log('Next to', enemie)
                     
+                    
                 }
             })
 

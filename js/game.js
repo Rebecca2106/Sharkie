@@ -30,6 +30,7 @@ window.addEventListener("keydown", (e) => {
     
 });
 window.addEventListener("keyup", (e) => {
+    keyboard.lastMove= new Date().getTime();
     if (e.keyCode == 38) {
         console.log('up arrow not longer pressed')
         keyboard.Up = false;

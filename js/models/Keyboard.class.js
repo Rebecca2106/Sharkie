@@ -6,5 +6,5 @@ Left=false;
 Right=false;
 Space=false;
 Shoot=false;
-
+lastMove=0;
 }

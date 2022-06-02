@@ -32,6 +32,39 @@ class Character extends MovableObject {
 
         ];
 
+        Sharkie_Idle = [
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/1.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/2.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/3.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/4.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/5.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/6.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/7.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/8.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/9.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/10.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/11.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/12.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/13.png',
+        ];
+
+        Sharkie_Long_Idle =[
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i1.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i2.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i3.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i4.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i5.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i6.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i7.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i8.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i9.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i10.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i11.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i12.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i13.png',
+            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i14.png',
+        ];
+
     Sharkie_isDead = [
         'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/1.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/2.png',
@@ -72,9 +105,21 @@ class Character extends MovableObject {
         this.loadImages(this.Sharkie_Swim);
         this.loadImages(this.Sharkie_Finslap);
         this.loadImages(this.Sharkie_isDead);
+        this.loadImages(this.Sharkie_Idle);
+        this.loadImages(this.Sharkie_Long_Idle);
         this.loadImages(this.Sharkie_hurt_poisened);
         this.loadImages(this.Sharkie_hurt_electric);
         this.animate();
+    }
+
+    isIdle() {
+        let timePassed = new Date().getTime() - this.world.keyboard.lastMove;
+        return timePassed > 2000;
+    }
+
+    isLongIdle() {
+        let timePassed = new Date().getTime() - this.world.keyboard.lastMove;
+        return timePassed > 5000;
     }
 
     animate() {
@@ -110,6 +155,14 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.Sharkie_isDead);
+            }
+
+            if (this.isIdle()){
+                this.playAnimation(this.Sharkie_Idle);
+            }
+
+            if (this.isLongIdle()){
+                this.playAnimation(this.Sharkie_Long_Idle)
             }
 
             else if (this.isHurt()) {

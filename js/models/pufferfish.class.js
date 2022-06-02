@@ -15,10 +15,10 @@ class Pufferfish extends MovableObject {
     ];
 
     Pufferfish_Transition = ['Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition1.png',
-    'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition2.png',
-    'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition3.png',
-    'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition4.png',
-    'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition2.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition3.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition4.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png',
     ];
 
     constructor() {
@@ -31,7 +31,7 @@ class Pufferfish extends MovableObject {
         this.speed = 0.3 + Math.random() * 2;
 
     }
-    
+
 
 
 
@@ -53,8 +53,15 @@ class Pufferfish extends MovableObject {
         }, 1000 / 45);
 
         setInterval(() => {
-            this.playAnimation(this.Pufferfish_Swim)
-          
+            if (this.puffered == true) {
+                this.playAnimation(this.Pufferfish_Transition)
+            }
+            else {
+                this.playAnimation(this.Pufferfish_Swim)
+            }
+
+
+
 
         }, 1000 / 4);
 
