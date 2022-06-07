@@ -10,9 +10,12 @@ class World {
     enemies = level1.enemies;
     endboss = level1.endboss;
     backgroundObjects = level1.backgroundObjects;
-    CoinBar= new Statusbar(-100,-10,'Coinbar');
-    LifeBar= new Statusbar(-100,60,'Lifebar');
-    PoisonBar = new Statusbar(-100,25,'Poisonbar');
+    CoinBar= new Statusbar('coin',0);
+    PoisonBar= new Statusbar('poison',0);
+    LifeBar= new Statusbar('life',1);
+    // LifeBar= new Statusbar(-100,60,'Lifebar',150);
+    // PoisonBar = new Statusbar(-100,35,'poison',50);
+    
 
 
     canvas;
@@ -88,11 +91,13 @@ class World {
         // this.addObjectsToMap(this.level.pufferfishes);
         this.addObjectsToMap(this.level.endboss);
         this.addTomap(this.character);
-        this.addTomap(this.CoinBar);
-        this.addTomap(this.LifeBar);
-        this.addTomap(this.PoisonBar);
+        // this.addTomap(this.CoinBar);
+        // this.addTomap(this.LifeBar);
+        // this.addTomap(this.PoisonBar);
+        // this.addTomap(this.FullBar);
         this.addObjectsToMap(this.level.enemies);
-        this.ctx.translate(-this.camera_x, 0)
+        this.ctx.translate(-this.camera_x, 0);
+        this.drawAllBars();
 
 
 
@@ -114,12 +119,29 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
+    }
+
+    drawAllBars(){
+        this.drawStatusbar(this.LifeBar, 0, 0, '');
+        this.drawStatusbar(this.CoinBar, 400, 0, '');
+        this.drawStatusbar(this.PoisonBar, 200, 0, '');
+
+
+
+
+    }
+
+    drawStatusbar(object, x_position, y_position, txt ){ //txt wofür?
+        this.ctx.drawImage(object.emptybar, x_position, 8, object.bar_size, object.bar_size * object.emptybar.height / object.emptybar.width);
+        this.ctx.drawImage(object.fullbar, 120 + ((object.fullbar.width - 120) * (1 - object.startvalue)), 0, object.fullbar.width, object.fullbar.height, 120 * (object.bar_size / object.fullbar.width) + x_position, 8, object.bar_size, object.bar_size * object.fullbar.height / object.fullbar.width);
+        // this.ctx.drawImage(object, x_position, y_position, object.icon_size,1);
+    
     }
 
     flipImage(mo){
@@ -133,6 +155,8 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
 
 }
 

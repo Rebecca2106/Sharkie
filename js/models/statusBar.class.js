@@ -1,35 +1,36 @@
 class Statusbar extends DrawableObject {
 
-    height = 50;
-    width = 150;
+    bar_size=150;
     x = 0;
     y = 0;
-    img;
+    icon_size=50;
+    startvalue;
     type;
+    fullbar;
+    emptybar;
 
 
-    constructor(x, y, type) {
-        super();
-        this.x = x;
-        this.y = y;
+    constructor(type, startvalue) {
+        super().loadImage(`Alternative Grafiken - Sharkie/4. Marcadores/3. Bar/clean_bar_empty.png`);
+        this.loadEmptyBar();
+        this.loadFullBar();
+        this.startvalue = startvalue;
         this.type = type;
-        this.loadImage(`Alternative Grafiken - Sharkie/4. Marcadores/orange/0_${type}.png`);
-    
+        this.icon = (`Alternative Grafiken - Sharkie/4. Marcadores/3. Bar/icon_${type}.png`);
 
     }
 
-    CoinBar = [
-        'Alternative Grafiken - Sharkie/4. Marcadores/orange/0_  copia Coinbar.png'
-    ];
+    loadEmptyBar() {
+        this.emptybar = new Image();
+        this.emptybar.src = 'Alternative Grafiken - Sharkie/4. Marcadores/3. Bar/clean_bar_empty.png';
+    }
+    loadFullBar() {
+        this.fullbar = new Image();
+        this.fullbar.src = 'Alternative Grafiken - Sharkie/4. Marcadores/3. Bar/clean_bar_full.png';
+    }
 
-    LifeBar = [
-        'Alternative Grafiken - Sharkie/4. Marcadores/orange/0_  Lifebar.png'
 
-    ]
 
-    PoisonBar = [
-        'Alternative Grafiken - Sharkie/4. Marcadores/orange/0_ Poisonbar.png'
-    ]
 
     percentage = 100;
 
