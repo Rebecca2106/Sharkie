@@ -8,7 +8,7 @@ class World {
     coins = level1.coins;
     // pufferfishes = level1.pufferfishes;
     enemies = level1.enemies;
-    endboss = level1.endboss;
+    endboss = new Endboss();
     backgroundObjects = level1.backgroundObjects;
     CoinBar = new Statusbar('coin', 0);
     PoisonBar = new Statusbar('poison', 0);
@@ -22,6 +22,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    intro=false;
 
 
     constructor(canvas, keyboard) {
@@ -33,12 +34,24 @@ class World {
         this.checkdistance();
         this.checkCollisions();
         this.newEnemies();
+        this.checkIntro();
     }
 
     setWorld() {
         this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
 
-    }
+    };
+
+    checkIntro(){
+        setInterval(() => {
+                if (this.character.x >= this.endboss.x - 480) {
+                    this.endboss.animate();                  
+                }
+ 
+         }, 3000);
+        
+
+    };
 
     newEnemies() {
         setInterval(() => {
@@ -99,7 +112,7 @@ class World {
         this.addObjectsToMap(this.level.bubbles);
         this.addObjectsToMap(this.level.coins);
         // this.addObjectsToMap(this.level.pufferfishes);
-        this.addObjectsToMap(this.level.endboss);
+        this.addTomap(this.endboss);
         this.addTomap(this.character);
         // this.addTomap(this.CoinBar);
         // this.addTomap(this.LifeBar);

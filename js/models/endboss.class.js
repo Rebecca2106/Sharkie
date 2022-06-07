@@ -3,7 +3,8 @@ class Endboss extends MovableObject{
     height =300;
     width = 300;
     y = 0;
-    intro= false;
+    intro =false;
+    x;
 
 
 
@@ -39,11 +40,11 @@ class Endboss extends MovableObject{
     ]
 
 
+
         constructor() {
             super().loadImage(this.Endboss_Intro[0]);
             this.loadImages(this.Endboss_Intro);
             this.loadImages(this.Endboss_Swim);
-            this.animate(this.Endboss_Intro);
             this.x = 1500;
        
          
@@ -52,8 +53,13 @@ class Endboss extends MovableObject{
         animate() {
             let i=0;
             setInterval(() => {
+                if (i<10){
                 this.playAnimation(this.Endboss_Intro);
-                
+                }
+                else{
+                    this.playAnimation(this.Endboss_Swim)
+                }
+                i++;
     
             }, 1000 / 4);
     
