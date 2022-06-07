@@ -5,6 +5,7 @@ class Endboss extends MovableObject{
     y = 0;
     intro =false;
     x;
+    i =0;
 
 
 
@@ -51,15 +52,14 @@ class Endboss extends MovableObject{
         }
 
         animate() {
-            let i=0;
             setInterval(() => {
-                if (i<10){
+                if (this.i<10){
                 this.playAnimation(this.Endboss_Intro);
                 }
                 else{
                     this.playAnimation(this.Endboss_Swim)
                 }
-                i++;
+                this.i++;
     
             }, 1000 / 4);
     
