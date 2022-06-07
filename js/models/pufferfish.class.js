@@ -5,6 +5,7 @@ class Pufferfish extends MovableObject {
     otherDirection = false;
     damage = 5;
     puffered;
+    
 
 
     Pufferfish_Swim = ['Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png',
@@ -21,12 +22,12 @@ class Pufferfish extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png',
     ];
 
-    constructor() {
+    constructor(offset) {
         super().loadImage('Alternative Grafiken - Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png');
         this.loadImages(this.Pufferfish_Swim);
         this.loadImages(this.Pufferfish_Transition);
         this.animate(this.Pufferfish_Swim)
-        this.x = (Math.floor(Math.random() * 530)) + 150;
+        this.x = (Math.floor(Math.random() * 530)) + offset;
         this.y = (Math.floor(Math.random() * 450));
         this.speed = 0.3 + Math.random() * 2;
 

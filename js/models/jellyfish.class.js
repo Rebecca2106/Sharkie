@@ -16,9 +16,9 @@ class Jellyfish extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png'
     ];
 
-    constructor() {
+    constructor(offset) {
         super().loadImage('Alternative Grafiken - Sharkie/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png')
-        this.x = (Math.floor(Math.random() * 530)) + 150;
+        this.x = (Math.floor(Math.random() * 530)) + offset;
         this.y = (Math.floor(Math.random() * 450));
         this.middleX = this.x; //Konstante um die ich herumschwimme
         this.moveUpDown();

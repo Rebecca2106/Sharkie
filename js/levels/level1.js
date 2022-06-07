@@ -1,7 +1,7 @@
 const level1 = new Level(
 
     
-    [
+    [ 
         new Bubble(),
         new Bubble(),
         new Bubble(),
@@ -20,13 +20,19 @@ const level1 = new Level(
     ],
 
     [
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish(),
-        new Jellyfish(),
-        new Jellyfish(),
-        new Jellyfish(),
+        new Pufferfish(150),
+        new Pufferfish(150),
+        new Pufferfish(150),
+        new Pufferfish(150),
+        new Pufferfish(1200),
+        new Pufferfish(1200),
+        new Pufferfish(1400),
+        new Jellyfish(150),
+        new Jellyfish(150),
+        new Jellyfish(150),
+        new Jellyfish(650),
+        new Jellyfish(650),
+        new Jellyfish(850),
     ],
 
     // [
