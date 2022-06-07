@@ -92,6 +92,8 @@ class MovableObject extends DrawableObject {
 
     loseEnergy(enemie) {
         this.energy -= enemie.damage;
+        this.world.LifeBar.startvalue = (this.energy/100);
+
         if (enemie instanceof Jellyfish) {
             this.collison_with = "jellyfish";
         }
@@ -111,7 +113,6 @@ class MovableObject extends DrawableObject {
     }
 
     isHurt() {
-
         let timepassed = new Date().getTime() - this.lastHit  //Differenz in MS
         timepassed = timepassed / 1000;
         return timepassed < 1;

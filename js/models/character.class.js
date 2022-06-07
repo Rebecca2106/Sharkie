@@ -157,13 +157,6 @@ class Character extends MovableObject {
                 this.playAnimation(this.Sharkie_isDead);
             }
 
-            if (this.isIdle()){
-                this.playAnimation(this.Sharkie_Idle);
-            }
-
-            if (this.isLongIdle()){
-                this.playAnimation(this.Sharkie_Long_Idle)
-            }
 
             else if (this.isHurt()) {
                 if (this.collison_with == "jellyfish") {
@@ -187,7 +180,23 @@ class Character extends MovableObject {
 
         }, 1000 / 10); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
 
+        setInterval(() => {
+          
+
+            if (this.isIdle()){
+                this.playAnimation(this.Sharkie_Idle);
+            }
+
+            if (this.isLongIdle()){
+                this.playAnimation(this.Sharkie_Long_Idle)
+            }
+
+
+        }, 1000 / 5); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
+
     }
+
+    
 
 
 

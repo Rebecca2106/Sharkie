@@ -12,7 +12,7 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     CoinBar= new Statusbar('coin',0);
     PoisonBar= new Statusbar('poison',0);
-    LifeBar= new Statusbar('life',1);
+    LifeBar= new Statusbar('heart',1);
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
     
@@ -36,6 +36,7 @@ class World {
 
     setWorld() {
         this.character.world = this;     //damit wir auf die Varaiblen der Welt auch zugreifen
+       
     }
 
     checkdistance(){
@@ -127,22 +128,27 @@ class World {
         }
     }
 
+   
+
     drawAllBars(){
-        this.drawStatusbar(this.LifeBar, 0, 0, '');
-        this.drawStatusbar(this.CoinBar, 400, 0, '');
-        this.drawStatusbar(this.PoisonBar, 200, 0, '');
-
-
+        this.drawStatusbar(this.LifeBar, 0, 0);
+        this.drawStatusbar(this.CoinBar, 400, 5);
+        this.drawStatusbar(this.PoisonBar, 200, 0);
 
 
     }
 
-    drawStatusbar(object, x_position, y_position, txt ){ //txt wofür?
+    drawStatusbar(object, x_position, y_position){ //txt wofür?
         this.ctx.drawImage(object.emptybar, x_position, 8, object.bar_size, object.bar_size * object.emptybar.height / object.emptybar.width);
         this.ctx.drawImage(object.fullbar, 120 + ((object.fullbar.width - 120) * (1 - object.startvalue)), 0, object.fullbar.width, object.fullbar.height, 120 * (object.bar_size / object.fullbar.width) + x_position, 8, object.bar_size, object.bar_size * object.fullbar.height / object.fullbar.width);
-        // this.ctx.drawImage(object, x_position, y_position, object.icon_size,1);
-    
+        this.drawSingleImage(object, x_position, y_position, 50, 50);
     }
+
+    drawSingleImage(object, size, set_x, set_y, relation) {
+            this.ctx.drawImage(object.img, size, set_x, set_y, relation);
+        
+    }
+
 
     flipImage(mo){
         this.ctx.save();
