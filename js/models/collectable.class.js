@@ -16,10 +16,10 @@ class Coins extends MovableObject {
         'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/star coin rotate 6.png',
     ]
     
-    constructor() {
+    constructor(x,y) {
         super().loadImage(this.CoinRotate[0]);
-        this.x = 400;
-        this.y -=30;
+        this.x = x;
+        this.y =y;
         this.loadImages(this.CoinRotate);
         this.animate(this.CoinRotate);
   

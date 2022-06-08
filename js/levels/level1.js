@@ -8,15 +8,25 @@ const level1 = new Level(
         new Bubble(),
 
     ],
+
+    [
+        new Poison(225,317),
+        new Poison(560,280),
+        new Poison(740,350)
+    ],
     
     [
 
-        new Coins(),
-        new Coins(),
-        new special_coin(),
-        new special_coin(),
-        new special_coin(),
-        new special_coin(),
+        new Coins(200,150),
+        new Coins(760,50),
+        new special_coin(0),
+        new special_coin(0),
+        new special_coin(0),
+        new special_coin(0),
+        new special_coin(800),
+        new special_coin(800),
+        new special_coin(800),
+        new special_coin(800),
     ],
 
     [

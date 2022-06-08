@@ -8,6 +8,7 @@ class World {
     coins = level1.coins;
     // pufferfishes = level1.pufferfishes;
     enemies = level1.enemies;
+    poision = level1.poisions;
     endboss = new Endboss();
     backgroundObjects = level1.backgroundObjects;
     CoinBar = new Statusbar('coin', 0);
@@ -35,6 +36,7 @@ class World {
         this.checkCollisions();
         this.newEnemies();
         this.checkIntro();
+        // this.checkAnimationCoins();
     }
 
     setWorld() {
@@ -74,6 +76,15 @@ class World {
         }, 1000);
     }
 
+    // checkAnimationCoins(){
+    //     setInterval(() => {
+    //         this.level.coins.forEach((coin) => {
+    //             if (coin instanceof special_coin && this.character.x - coin.x <300){
+    //             this.level.coins.applyGravity();}
+    //         })
+    //     },2000)
+    // }
+
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((enemie) => {
@@ -111,6 +122,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects)
         this.addObjectsToMap(this.level.bubbles);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.poisions);
         // this.addObjectsToMap(this.level.pufferfishes);
         this.addTomap(this.endboss);
         this.addTomap(this.character);

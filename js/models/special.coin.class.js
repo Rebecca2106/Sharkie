@@ -5,7 +5,7 @@ class special_coin extends MovableObject {
     width = 30;
     speedY = 0;
     acceleration = 0.2;
-    randomDirection = Math.random() < 0.6;
+    randomDirection = Math.random() < 0.5;
 
     falling_Coin = [
         'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/1.png',
@@ -16,12 +16,14 @@ class special_coin extends MovableObject {
         'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/6.png',
     ]
 
-    constructor() {
+    constructor(start) {
         super().loadImage(this.falling_Coin[0]);
+        this.start=start;
+        this.x = start+(Math.floor(Math.random() * 500)) + 150;
         this.loadImages(this.falling_Coin);
         this.animate(this.falling_Coin);
         this.applyGravity(this.randomDirection);
-        this.x = (Math.floor(Math.random() * 500)) + 150;
+   
 
 
     }
