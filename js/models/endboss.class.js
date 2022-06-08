@@ -40,6 +40,8 @@ class Endboss extends MovableObject{
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
+    intro = new Audio('audio/Intro.mp3');
+
 
 
         constructor() {
@@ -55,6 +57,7 @@ class Endboss extends MovableObject{
             setInterval(() => {
                 if (this.i<10){
                 this.playAnimation(this.Endboss_Intro);
+                this.intro.play();
                 }
                 else{
                     this.playAnimation(this.Endboss_Swim)

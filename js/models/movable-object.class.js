@@ -57,7 +57,7 @@ class MovableObject extends DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = "4";
             ctx.strokeStyle = "green";
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x, this.y, this.width, this.height );
             ctx.stroke();
         }
     }
@@ -66,16 +66,17 @@ class MovableObject extends DrawableObject {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x + mo.width &&
-            this.y < mo.y + mo.height
+            this.y+this.offset < mo.y + mo.height
     }
 
     isNextto(mo) {
         if (mo instanceof Pufferfish && mo.otherDirection==false) {
             if (((this.x + this.width) - mo.x < 50) && ((this.x + this.width) - mo.x > 0)) {
                 mo.puffered = true;
+                console.log('next to pufferfish')
             }
         }
-        // if (mo instanceof Pufferfish && mo.otherDirection==false) {
+        // if (mo instanceof Pufferfish && mo.otherDirection==true) {
         //     if (((this.x - this.width) - mo.x < 50) && ((this.x - this.width) - mo.x > 0)) {
         //         mo.puffered = true;
         //     }

@@ -44,11 +44,11 @@ class World {
 
     checkIntro(){
         setInterval(() => {
-                if (this.character.x >= this.endboss.x - 480) {
+                if (this.character.x >= this.endboss.x - 580) {
                     this.endboss.animate();                  
                 }
  
-         }, 3000);
+         }, 1000);
         
 
     };
@@ -65,7 +65,7 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemie) => {
                 if (this.character.isNextto(enemie)) {
-                    console.log('Next to', enemie)
+
 
 
                 }

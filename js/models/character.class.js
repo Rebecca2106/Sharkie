@@ -7,6 +7,7 @@ class Character extends MovableObject {
     img;
     speed = 5;
     otherDirection = false;
+    offset =75;
 
 
 
@@ -98,6 +99,8 @@ class Character extends MovableObject {
     world;
     currentImage = 0;
     ocean = new Audio('audio/ocean.mp3');
+    hurt = new Audio('audio/hurt.mp3');
+    hurt_electric = new Audio('audio/hurt_electric.mp3');
 
 
     constructor() {
@@ -160,9 +163,11 @@ class Character extends MovableObject {
 
             else if (this.isHurt()) {
                 if (this.collison_with == "jellyfish") {
+                    this.hurt_electric.play();
                     this.playAnimation(this.Sharkie_hurt_electric)
                 }
                 if (this.collison_with == "pufferfish") {
+                    this.hurt.play();
                     this.playAnimation(this.Sharkie_hurt_poisened)
                 }
             }
