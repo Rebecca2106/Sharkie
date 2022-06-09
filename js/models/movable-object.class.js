@@ -31,9 +31,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 45);
     }
 
-    moveUpandDown() {
-
-    }
+    applyGravity() {               
+                    this.y -= this.speedY;
+                    this.speedY -= this.acceleration;
+        }
 
     playAnimation(images) {
         let i = this.currentImage % images.length; //let i= 5 % 6 = 0 Rest 5; ganzzahliger Rest einer Division 

@@ -14,6 +14,7 @@ class World {
     CoinBar = new Statusbar('coin', 0);
     PoisonBar = new Statusbar('poison', 0);
     LifeBar = new Statusbar('heart', 1);
+    throw_bubble =[new throwable_object()];
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
 
@@ -24,6 +25,7 @@ class World {
     keyboard;
     camera_x = 0;
     intro=false;
+    
 
 
     constructor(canvas, keyboard) {
@@ -32,6 +34,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.cycle();
         this.checkdistance();
         this.checkCollisions();
         this.newEnemies();
@@ -44,15 +47,26 @@ class World {
 
     };
 
-    checkIntro(){
+    cycle(){
         setInterval(() => {
-                if (this.character.x >= this.endboss.x - 580) {
-                    this.endboss.animate();                  
+           this.checkIntro();
+            
+        },200)
+    }
+
+    checkIntro(){
+                if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced ==false) {
+                    this.endboss.animate();  
+                    this.endboss.introduced=true;
+                      
+                }
+                if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced==true && this.endboss.endboss_angry==false){
+                    this.endboss.endboss_angry=true;
+                    this.endboss.animate(); 
+             
+
                 }
  
-         }, 1000);
-        
-
     };
 
     newEnemies() {
@@ -123,6 +137,7 @@ class World {
         this.addObjectsToMap(this.level.bubbles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.poisions);
+        this.addObjectsToMap(this.throw_bubble);
         // this.addObjectsToMap(this.level.pufferfishes);
         this.addTomap(this.endboss);
         this.addTomap(this.character);

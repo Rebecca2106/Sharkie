@@ -1,15 +1,14 @@
-class Endboss extends MovableObject{
+class Endboss extends MovableObject {
 
-    height =300;
+    height = 300;
     width = 300;
     y = 0;
-    intro =false;
     x;
-    i =0;
+    i = 0;
 
 
 
-    Endboss_Intro =[
+    Endboss_Intro = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/2.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/3.png',
@@ -21,10 +20,10 @@ class Endboss extends MovableObject{
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/1.Introduce/10.png',
 
-       
+
     ];
 
-    Endboss_Swim =[
+    Endboss_Swim = [
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/1.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/2.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/3.png',
@@ -38,43 +37,64 @@ class Endboss extends MovableObject{
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/11.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/12.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/2.floating/13.png'
+    ];
+
+    Endboss_Attack = [
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/1.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/2.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/3.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/4.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/5.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/6.png',
+
     ]
 
     intro = new Audio('audio/Intro.mp3');
 
 
 
-        constructor() {
-            super().loadImage(this.Endboss_Intro[0]);
-            this.loadImages(this.Endboss_Intro);
-            this.loadImages(this.Endboss_Swim);
-            this.x = 1500;
-       
-         
-        }
+    constructor() {
+        super().loadImage(this.Endboss_Intro[0]);
+        this.loadImages(this.Endboss_Intro);
+        this.loadImages(this.Endboss_Swim);
+        this.loadImages(this.Endboss_Attack);
+        this.x = 1500;
 
-        animate() {
-            setInterval(() => {
-                if (this.i<10){
+
+    }
+
+    endboss_angry = false;
+    introduced = false;
+
+    animate() {
+        setInterval(() => {
+            if (this.introduced == true && this.endboss_angry == true) {
+                this.playAnimation(this.Endboss_Attack);
+
+            }
+
+            if (this.i < 10) {
                 this.playAnimation(this.Endboss_Intro);
                 this.intro.play();
-                }
-                else{
-                    this.playAnimation(this.Endboss_Swim)
-                }
-                this.i++;
-    
-            }, 1000 / 4);
-    
-        }
+            }
 
-        applyGravity(){
-            setInterval(( ) => {
-                if (this.y<400){
+            else {
+                this.playAnimation(this.Endboss_Swim)
+            }
+            this.i++;
+
+        }, 1000 / 4);
+
+    }
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.y < 400) {
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration;}
-            },1000/25)
-            
-         }
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25)
+
+    }
 
 }

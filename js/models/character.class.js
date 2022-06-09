@@ -94,12 +94,25 @@ class Character extends MovableObject {
         'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/2.Electric shock/2.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/5.Hurt/2.Electric shock/3.png',
 
+    ];
+
+    Sharkie_Bubble_ATtack = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+        
     ]
 
     world;
     currentImage = 0;
     ocean = new Audio('audio/ocean.mp3');
     hurt = new Audio('audio/hurt.mp3');
+    snooze= new Audio('audio/snooze.mp3');
     hurt_electric = new Audio('audio/hurt_electric.mp3');
 
 
@@ -149,9 +162,14 @@ class Character extends MovableObject {
             if (this.world.keyboard.Down && this.y < 380) {
                 this.y += this.speed;
                 this.ocean.play();
-
             }
-            this.world.camera_x = -this.x + 100;  //soweit wie der Fisch geschwommen ist, soll die Camera nach rechts verschoben werden
+
+            if(this.world.keyboard.D){
+                this.throw(this.x, this.y);
+            }
+
+
+            this.world.camera_x = -this.x + 120;  //soweit wie der Fisch geschwommen ist, soll die Camera nach rechts verschoben werden
 
         }, 1000 / 60);
 
@@ -186,6 +204,7 @@ class Character extends MovableObject {
         }, 1000 / 10); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
 
         setInterval(() => {
+            this.snooze.pause();
           
 
             if (this.isIdle()){
@@ -194,11 +213,14 @@ class Character extends MovableObject {
 
             if (this.isLongIdle()){
                 this.playAnimation(this.Sharkie_Long_Idle)
+                this.snooze.play();
             }
+
+            
 
 
         }, 1000 / 5); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
-
+       
     }
 
     

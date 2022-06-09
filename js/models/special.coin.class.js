@@ -22,14 +22,14 @@ class special_coin extends MovableObject {
         this.x = start+(Math.floor(Math.random() * 500)) + 150;
         this.loadImages(this.falling_Coin);
         this.animate(this.falling_Coin);
-        this.applyGravity(this.randomDirection);
+        this.applyGravityCoin(this.randomDirection);
    
 
 
     }
 
 
-    applyGravity() {
+    applyGravityCoin() {
         if (this.randomDirection == true) {
             setInterval(() => {
                 if (this.y < 400) {

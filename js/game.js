@@ -26,6 +26,9 @@ window.addEventListener("keydown", (e) => {
     } else if (e.keyCode == 32) {
         console.log('space pressed')
         keyboard.Space = true;
+    } else if (e.keyCode == 68) {
+        keyboard.D = true;
+        console.log('D pressed')
     }
     
 });
@@ -45,7 +48,11 @@ window.addEventListener("keyup", (e) => {
         keyboard.Right = false;
     }  else if (e.keyCode == 32) {
         console.log('space not longer pressed')
-        keyboard.Space = false;}
+        keyboard.Space = false;
+    } else if (e.keyCode == 68) {
+        keyboard.D = false;
+        console.log('D not longer pressed')
+    }
 });
 
 
