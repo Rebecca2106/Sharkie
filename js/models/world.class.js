@@ -55,15 +55,9 @@ class World {
     }
 
     checkEndbossActions() {
-        if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced == false) {
+        if (this.character.x >= this.endboss.x - 580) {
             this.endboss.animate();
             this.endboss.introduced = true;
-
-        }
-        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced == true && this.endboss.endboss_angry == false) {
-            this.endboss.isAngry();
-            this.endboss.animate();
-
 
         }
 

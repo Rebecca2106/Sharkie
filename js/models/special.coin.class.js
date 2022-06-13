@@ -6,7 +6,7 @@ class special_coin extends MovableObject {
     speedY = 0;
     acceleration = 0.2;
     randomDirection = Math.random() < 0.5;
-    value=3;
+    value=20;
 
     falling_Coin = [
         'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/1.png',
@@ -40,7 +40,7 @@ class special_coin extends MovableObject {
             }, 1000 / 25)
         }
         else {
-            this.value =7;
+            this.value =10;
             setInterval(() => {
                 if (this.direction) {
                     this.y -= 2;

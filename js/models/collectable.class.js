@@ -3,7 +3,7 @@ class Coins extends MovableObject {
     width =30;
     height =30;
     speed =20;
-    value= 10;
+    value= 4;
 
 
 
@@ -34,6 +34,8 @@ class Coins extends MovableObject {
         }, 1000 / 6);
 
     }
+
+    
 
 
 }

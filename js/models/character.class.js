@@ -138,6 +138,20 @@ class Character extends MovableObject {
         return timePassed > 5000;
     }
 
+    collect(coin){
+        if (coin instanceof Coins){
+            this.specialcoin.play();
+        }
+        else{
+            this.coin.play();
+        }
+        this.world.CoinBar.startvalue +=1/coin.value;
+        let index=this.world.level.coins.indexOf(coin);
+        this.world.level.coins.splice(index,1);
+    
+        
+    }
+
     animate() {
 
         setInterval(() => {

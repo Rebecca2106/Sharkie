@@ -14,6 +14,9 @@ class MovableObject extends DrawableObject {
     puffered;
 
 
+    coin = new Audio('audio/collect.mp3');
+    specialcoin = new Audio('audio/super_coin.mp3');
+
 
     moveRight() {                        //function ist nicht nötig, OOP ist recht neu in JS, funktioniert ohne das Wort
         this.x += this.speed;           //Schablone welche Felder zu einen objekt gehören sollen
@@ -121,12 +124,6 @@ class MovableObject extends DrawableObject {
 
     }
 
-    collect(coin){
-        this.world.CoinBar.startvalue +=1/coin.value;
-        let index=this.world.level.coins.indexOf(coin);
-        this.world.level.coins.splice(index,1);
-        
-    }
 
 
 }

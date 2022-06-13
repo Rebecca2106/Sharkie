@@ -71,17 +71,20 @@ class Endboss extends MovableObject {
             if (this.i < 10) {
                 this.playAnimation(this.Endboss_Intro);
                 this.intro.play();
+                this.lastAngry=new Date().getTime();
+
             }
             
-            // if (this.introduced == true && this.isAngry()) {
-            //     this.playAnimation(this.Endboss_Attack);
-            //     this.lastAngry=new Date().getTime();
+            if (this.i >=10  && this.isAngry()) {
+                this.playAnimation(this.Endboss_Attack);
+                this.lastAngry=new Date().getTime();
 
-            // }
+            }
             
 
-            else {
-                this.playAnimation(this.Endboss_Swim)
+            if(this.i>=10 && !this.isAngry())
+             {
+             this.playAnimation(this.Endboss_Swim)
             }
             this.i++;
 
@@ -100,7 +103,7 @@ class Endboss extends MovableObject {
     isAngry(){
         let timepassed = new Date().getTime() - this.lastAngry  //Differenz in MS
         timepassed = timepassed / 1000;
-        return timepassed < 1;
+        return timepassed < 2;
     }
 
 }
