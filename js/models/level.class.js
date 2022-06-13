@@ -9,7 +9,7 @@ class Level {
   
     level_end_x =1600;
 
-    constructor(bubbles,  coins, poisions, enemies,backgroundObjects){ //pufferfish entfernt
+    constructor(bubbles, poisions, coins, enemies,backgroundObjects){ //pufferfish entfernt
         this.bubbles = bubbles;
         this.coins = coins;
         this.poisions= poisions;

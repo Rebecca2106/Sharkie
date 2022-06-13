@@ -199,8 +199,6 @@ class Character extends MovableObject {
                 }
             }
 
-
-
         }, 1000 / 10); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
 
         setInterval(() => {

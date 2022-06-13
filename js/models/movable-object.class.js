@@ -121,5 +121,12 @@ class MovableObject extends DrawableObject {
 
     }
 
+    collect(coin){
+        this.world.CoinBar.startvalue +=1/coin.value;
+        let index=this.world.level.coins.indexOf(coin);
+        this.world.level.coins.splice(index,1);
+        
+    }
+
 
 }

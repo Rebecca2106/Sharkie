@@ -14,7 +14,7 @@ class World {
     CoinBar = new Statusbar('coin', 0);
     PoisonBar = new Statusbar('poison', 0);
     LifeBar = new Statusbar('heart', 1);
-    throw_bubble =[new throwable_object()];
+    throw_bubble = [new throwable_object()];
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
 
@@ -24,8 +24,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    intro=false;
-    
+    intro = false;
+
 
 
     constructor(canvas, keyboard) {
@@ -38,7 +38,7 @@ class World {
         this.checkdistance();
         this.checkCollisions();
         this.newEnemies();
-        this.checkIntro();
+        this.checkEndbossActions();
         // this.checkAnimationCoins();
     }
 
@@ -47,31 +47,31 @@ class World {
 
     };
 
-    cycle(){
+    cycle() {
         setInterval(() => {
-           this.checkIntro();
-            
-        },200)
+            this.checkEndbossActions();
+
+        }, 200)
     }
 
-    checkIntro(){
-                if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced ==false) {
-                    this.endboss.animate();  
-                    this.endboss.introduced=true;
-                      
-                }
-                if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced==true && this.endboss.endboss_angry==false){
-                    this.endboss.endboss_angry=true;
-                    this.endboss.animate(); 
-             
+    checkEndbossActions() {
+        if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced == false) {
+            this.endboss.animate();
+            this.endboss.introduced = true;
 
-                }
- 
+        }
+        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced == true && this.endboss.endboss_angry == false) {
+            this.endboss.isAngry();
+            this.endboss.animate();
+
+
+        }
+
     };
 
     newEnemies() {
         setInterval(() => {
-           world.bubbles.push(new Bubble)
+            world.bubbles.push(new Bubble)
 
         }, 3000);
     }
@@ -79,6 +79,7 @@ class World {
 
     checkdistance() {
         setInterval(() => {
+            console.log(this.level.bubbles[1].x);
             this.level.enemies.forEach((enemie) => {
                 if (this.character.isNextto(enemie)) {
 
@@ -109,6 +110,12 @@ class World {
                     if (this.character.isDead()) {
                         this.character.playAnimation(this.character.Sharkie_isDead)
                     }
+                }
+            })
+            this.level.coins.forEach((coin) => {
+                if (this.character.isColliding(coin)) {
+                    console.log('collision with coin');
+                    this.character.collect(coin)
                 }
             })
 
@@ -185,9 +192,10 @@ class World {
         this.drawStatusbar(this.PoisonBar, 200, 0);
 
 
+
     }
 
-    drawStatusbar(object, x_position, y_position) { //txt wofür?
+    drawStatusbar(object, x_position, y_position) { 
         this.ctx.drawImage(object.emptybar, x_position, 8, object.bar_size, object.bar_size * object.emptybar.height / object.emptybar.width);
         this.ctx.drawImage(object.fullbar, 120 + ((object.fullbar.width - 120) * (1 - object.startvalue)), 0, object.fullbar.width, object.fullbar.height, 120 * (object.bar_size / object.fullbar.width) + x_position, 8, object.bar_size, object.bar_size * object.fullbar.height / object.fullbar.width);
         this.drawSingleImage(object, x_position, y_position, 50, 50);
