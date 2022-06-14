@@ -5,7 +5,10 @@ class Endboss extends MovableObject {
     y = 0;
     x;
     i = 0;
-    lastAngry=0;
+    lastAngry = 0;
+    speed = 0;
+    moveCounter = 10;
+    angry;
 
 
 
@@ -64,29 +67,34 @@ class Endboss extends MovableObject {
 
     }
 
-    endboss_angry = false;
-    introduced = false;
+    introduced = false;  
+  
 
     animate() {
-            if (this.i < 10) {
-                this.playAnimation(this.Endboss_Intro);
-                this.intro.play();
-                this.lastAngry=new Date().getTime();
+     
+        console.log(this.speed);
+        console.log(this.angry);
+        if (this.i < 10) {
+            this.playAnimation(this.Endboss_Intro);
+            this.intro.play();
+            this.lastAngry = new Date().getTime();
 
-            }
-            
-            if (this.i >=10  && this.isAngry()) {
-                this.playAnimation(this.Endboss_Attack);
-                this.lastAngry=new Date().getTime();
+        }
 
-            }
-            
+        if (this.i >= 10 && this.angry==true) {
+            // this.speed=1;
+            this.moveAutoLeft();
+            this.playAnimation(this.Endboss_Attack);
+            this.lastAngry = new Date().getTime();
+        }
 
-            if(this.i>=10 && !this.isAngry())
-             {
-             this.playAnimation(this.Endboss_Swim)
-            }
-            this.i++;
+
+
+        if (this.i >= 10 && this.angry==false) {
+            this.playAnimation(this.Endboss_Swim);
+
+        }
+        this.i++;
 
     }
 
@@ -100,10 +108,10 @@ class Endboss extends MovableObject {
 
     }
 
-    isAngry(){
-        let timepassed = new Date().getTime() - this.lastAngry  //Differenz in MS
-        timepassed = timepassed / 1000;
-        return timepassed < 2;
-    }
+    isAngry() {
+        
+            return this.angry=false;
+        }
+    
 
 }

@@ -5,6 +5,7 @@ class Pufferfish extends MovableObject {
     otherDirection = false;
     damage = 5;
     puffered;
+    offset=0;
     
 
 

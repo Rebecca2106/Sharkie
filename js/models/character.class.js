@@ -50,20 +50,21 @@ class Character extends MovableObject {
         ];
 
         Sharkie_Long_Idle =[
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i1.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i2.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i3.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i4.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i5.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i6.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i7.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i8.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i9.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i10.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i11.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i12.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i13.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/i14.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/1.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/2.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/3.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/4.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/5.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/6.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/7.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/8.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/9.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/10.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/11.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/12.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/13.png',
+           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/14.png',
+
         ];
 
     Sharkie_isDead = [
@@ -114,6 +115,9 @@ class Character extends MovableObject {
     hurt = new Audio('audio/hurt.mp3');
     snooze= new Audio('audio/snooze.mp3');
     hurt_electric = new Audio('audio/hurt_electric.mp3');
+    coin = new Audio('audio/collect.mp3');
+    specialcoin = new Audio('audio/super_coin.mp3');
+    poisoned = new Audio('audio/blubb.mp3');
 
 
     constructor() {
@@ -138,16 +142,27 @@ class Character extends MovableObject {
         return timePassed > 5000;
     }
 
-    collect(coin){
-        if (coin instanceof Coins){
-            this.specialcoin.play();
+    collect(collectable){
+      
+        if (collectable instanceof Coins || collectable instanceof special_coin ){
+            if (collectable instanceof Coins){
+                this.specialcoin.play();
+            }
+            else{
+                this.coin.play();
+            }
+            this.world.CoinBar.startvalue +=1/collectable.value;
+            let index=this.world.level.coins.indexOf(collectable);
+            this.world.level.coins.splice(index,1);
         }
-        else{
-            this.coin.play();
+
+        if (collectable instanceof Poison){
+            this.poisoned.play();
+            this.world.PoisonBar.startvalue += (collectable.value/4);
+            let index=this.world.level.poisions.indexOf(collectable);
+            this.world.level.poisions.splice(index,1);
         }
-        this.world.CoinBar.startvalue +=1/coin.value;
-        let index=this.world.level.coins.indexOf(coin);
-        this.world.level.coins.splice(index,1);
+      
     
         
     }
@@ -178,9 +193,7 @@ class Character extends MovableObject {
                 this.ocean.play();
             }
 
-            if(this.world.keyboard.D){
-                this.throw(this.x, this.y);
-            }
+         
 
 
             this.world.camera_x = -this.x + 120;  //soweit wie der Fisch geschwommen ist, soll die Camera nach rechts verschoben werden

@@ -14,7 +14,7 @@ class World {
     CoinBar = new Statusbar('coin', 0);
     PoisonBar = new Statusbar('poison', 0);
     LifeBar = new Statusbar('heart', 1);
-    throw_bubble = [new throwable_object()];
+    throw_bubble = [];
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
 
@@ -38,7 +38,6 @@ class World {
         this.checkdistance();
         this.checkCollisions();
         this.newEnemies();
-        this.checkEndbossActions();
         // this.checkAnimationCoins();
     }
 
@@ -50,16 +49,38 @@ class World {
     cycle() {
         setInterval(() => {
             this.checkEndbossActions();
+            this.checkThrowObjects();
 
         }, 200)
+    }
+
+    checkThrowObjects() {
+        if(this.keyboard.D){
+            let bubbleattack =new throwable_object(this.character.x, this.character.y);
+            this.throw_bubble.push(bubbleattack);
+
+        }
     }
 
     checkEndbossActions() {
         if (this.character.x >= this.endboss.x - 580) {
             this.endboss.animate();
             this.endboss.introduced = true;
-
         }
+
+        if(this.character.x >= this.endboss.x - 380 &&  (Math.random() < 0.6) ){
+            this.endboss.angry=true;
+            this.endboss.animate();
+            setTimeout(this.endboss.isAngry(), 4000);
+          
+        
+        }
+
+        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced==true ){
+            this.endboss.animate();
+        }
+        
+
 
     };
 
@@ -73,7 +94,7 @@ class World {
 
     checkdistance() {
         setInterval(() => {
-            console.log(this.level.bubbles[1].x);
+            // console.log(this.level.bubbles[1].x);
             this.level.enemies.forEach((enemie) => {
                 if (this.character.isNextto(enemie)) {
 
@@ -113,7 +134,17 @@ class World {
                 }
             })
 
+            this.level.poisions.forEach((poision) => {
+                if (this.character.isColliding(poision)) {
+                    console.log('collision with poision');
+                    this.character.collect(poision)
+                }
+            })
+
         }, 1000);
+
+    
+
         // setInterval(() => {
         //     this.level.pufferfishes.forEach((pufferfish) =>{
         //         if (this.character.isColliding(pufferfish)){
@@ -170,7 +201,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {

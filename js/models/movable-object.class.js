@@ -14,8 +14,7 @@ class MovableObject extends DrawableObject {
     puffered;
 
 
-    coin = new Audio('audio/collect.mp3');
-    specialcoin = new Audio('audio/super_coin.mp3');
+
 
 
     moveRight() {                        //function ist nicht nötig, OOP ist recht neu in JS, funktioniert ohne das Wort
@@ -61,15 +60,15 @@ class MovableObject extends DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = "4";
             ctx.strokeStyle = "green";
-            ctx.rect(this.x, this.y, this.width, this.height );
+            ctx.rect(this.x+(this.offset/7), this.y-(this.offset/7)+this.offset, this.width-(this.offset/3), this.height-this.offset );
             ctx.stroke();
         }
     }
 
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width &&
+        return this.x + this.width-(this.offset/3) > mo.x &&
+            this.y-(this.offset/7) + this.height > mo.y &&
+            this.x+(this.offset/7) < mo.x + mo.width &&
             this.y+this.offset < mo.y + mo.height
     }
 

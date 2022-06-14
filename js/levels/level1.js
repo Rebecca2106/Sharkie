@@ -12,7 +12,8 @@ const level1 = new Level(
     [
         new Poison(225,317),
         new Poison(560,280),
-        new Poison(740,350)
+        new Poison(740,350),
+        new Poison(1050,350)
     ],
     
     [
@@ -43,6 +44,7 @@ const level1 = new Level(
         new Jellyfish(650),
         new Jellyfish(650),
         new Jellyfish(850),
+        new Jellyfish(1250),
     ],
 
     // [

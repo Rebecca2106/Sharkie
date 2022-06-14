@@ -2,6 +2,7 @@ class Poison extends MovableObject{
 
     width =50;
     height =50;
+    value= 1;
 
 
 
