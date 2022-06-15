@@ -204,7 +204,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.Sharkie_isDead);
             }
 
-            if (this.world.keyboard.D){
+            if (this.world.keyboard.D || this.world.keyboard.B){
                 this.stopAnimation=true;
                 this.playAnimationOnce(this.Sharkie_Bubble_Attack)
             }

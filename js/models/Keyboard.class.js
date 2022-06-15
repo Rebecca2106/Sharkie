@@ -6,5 +6,6 @@ Left=false;
 Right=false;
 Space=false;
 D=false;
+B=false;
 lastMove=0;
 }

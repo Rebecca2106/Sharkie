@@ -57,10 +57,15 @@ class World {
     checkThrowObjects() {
         if(this.keyboard.D){
             setTimeout(() => {
-                let bubbleattack =new throwable_object(this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
+                let bubbleattack =new throwable_object('bubble',this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
                 this.throw_bubble.push(bubbleattack);
             },400)
-
+        }
+        if(this.keyboard.B){
+            setTimeout(() => {
+                let bubbleattack =new throwable_object('PoisonedBubble',this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
+                this.throw_bubble.push(bubbleattack);
+            },400)
         }
     }
 

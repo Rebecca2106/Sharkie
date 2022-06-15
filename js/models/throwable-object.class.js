@@ -6,16 +6,21 @@ class throwable_object extends MovableObject {
     acceleration;
     height = 35;
     width = 35;
-    i=0;
+    i = 0;
+    poisoned = false;
 
 
-    constructor(x,y) {
-        super().loadImage('Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
+    constructor(type, x, y) {
+        super();
+        this.loadImage(`Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/${type}.png`);
         this.x = x;
         this.y = y;
+        if (type == "PoisonedBubble") {
+            this.poisoned = true;
+        };
         this.throw();
-        this.speedY=2;
-        this.acceleration=-0.00003;
+        this.speedY = 2;
+        this.acceleration = -0.00003;
     }
 
     throw() {
@@ -23,13 +28,12 @@ class throwable_object extends MovableObject {
         setInterval(() => {
             this.i++;
             this.moveRight();
-            if(this.i>35){
+            if (this.i > 35) {
                 this.applyGravity();
             }
-            
+
         }, 1000 / 25);
     }
-
 }
 
 

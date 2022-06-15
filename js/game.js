@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas,keyboard);
+    world = new World(canvas, keyboard);
 
 
     console.log('My Character is', world.character)
@@ -29,11 +29,15 @@ window.addEventListener("keydown", (e) => {
     } else if (e.keyCode == 68) {
         keyboard.D = true;
         console.log('D pressed')
+    } else if (e.keyCode == 66) {
+        keyboard.B = true;
+        console.log('B pressed')
     }
-    
+
+
 });
 window.addEventListener("keyup", (e) => {
-    keyboard.lastMove= new Date().getTime();
+    keyboard.lastMove = new Date().getTime();
     if (e.keyCode == 38) {
         console.log('up arrow not longer pressed')
         keyboard.Up = false;
@@ -46,12 +50,15 @@ window.addEventListener("keyup", (e) => {
     } else if (e.keyCode == 39) {
         console.log('right arrow not longer pressed')
         keyboard.Right = false;
-    }  else if (e.keyCode == 32) {
+    } else if (e.keyCode == 32) {
         console.log('space not longer pressed')
         keyboard.Space = false;
     } else if (e.keyCode == 68) {
         keyboard.D = false;
         console.log('D not longer pressed')
+    } else if (e.keyCode == 66) {
+        keyboard.B = false;
+        console.log('B not longer pressed')
     }
 });
 
