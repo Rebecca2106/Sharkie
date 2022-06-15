@@ -56,8 +56,10 @@ class World {
 
     checkThrowObjects() {
         if(this.keyboard.D){
-            let bubbleattack =new throwable_object(this.character.x, this.character.y);
-            this.throw_bubble.push(bubbleattack);
+            setTimeout(() => {
+                let bubbleattack =new throwable_object(this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
+                this.throw_bubble.push(bubbleattack);
+            },400)
 
         }
     }
