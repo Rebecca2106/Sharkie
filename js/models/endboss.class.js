@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
         if (this.i >= 10 && this.angry==true) {
             this.speed=1;
             this.moveAutoLeft();
-            this.playAnimation(this.Endboss_Attack);
+            this.playAnimationOnce(this.Endboss_Attack);
             this.lastAngry = new Date().getTime();
         }
 
