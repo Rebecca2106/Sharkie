@@ -8,7 +8,6 @@ class Endboss extends MovableObject {
     lastAngry = 0;
     speed = 0;
     moveCounter = 10;
-    angry;
 
 
 
@@ -68,11 +67,12 @@ class Endboss extends MovableObject {
     }
 
     introduced = false;  
+    angry =false;
   
 
     animate() {
      
-        console.log(this.speed);
+   '     console.log(this.speed);'
         console.log(this.angry);
         if (this.i < 10) {
             this.playAnimation(this.Endboss_Intro);
@@ -82,7 +82,7 @@ class Endboss extends MovableObject {
         }
 
         if (this.i >= 10 && this.angry==true) {
-            // this.speed=1;
+            this.speed=1;
             this.moveAutoLeft();
             this.playAnimation(this.Endboss_Attack);
             this.lastAngry = new Date().getTime();

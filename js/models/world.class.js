@@ -68,15 +68,13 @@ class World {
             this.endboss.introduced = true;
         }
 
-        if(this.character.x >= this.endboss.x - 380 &&  (Math.random() < 0.6) ){
+        if(this.character.x >= this.endboss.x - 380 &&  (Math.random() < 0.6)  && this.endboss.angry == false){
             this.endboss.angry=true;
             this.endboss.animate();
-            setTimeout(this.endboss.isAngry(), 4000);
-          
-        
+            setTimeout(this.endboss.isAngry(), 4000); 
         }
 
-        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced==true ){
+        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced==true && this.endboss.angry ==false ){
             this.endboss.animate();
         }
         

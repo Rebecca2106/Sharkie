@@ -44,15 +44,23 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+       
     }
 
     playAnimationOnce(images) {
-        if (this.currentImage < images.length) {
-            let path = images[this.currentImage];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+        this.currentImage=0;
+        let playOnce =setInterval(() => {
+            if (this.currentImage < images.length) {
+                let path = images[this.currentImage];
+                this.img = this.imageCache[path];
+                this.currentImage++;}
 
-        }
+        },100)
+
+        setTimeout(() => {
+            clearInterval(playOnce)
+        },(100*images.length))
+        
     }
 
     drawFrame(ctx) {

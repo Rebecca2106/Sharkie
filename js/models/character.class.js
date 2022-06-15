@@ -97,7 +97,7 @@ class Character extends MovableObject {
 
     ];
 
-    Sharkie_Bubble_ATtack = [
+    Sharkie_Bubble_Attack = [
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
@@ -105,9 +105,9 @@ class Character extends MovableObject {
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
-        
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',  
     ]
+
 
     world;
     currentImage = 0;
@@ -129,6 +129,7 @@ class Character extends MovableObject {
         this.loadImages(this.Sharkie_Long_Idle);
         this.loadImages(this.Sharkie_hurt_poisened);
         this.loadImages(this.Sharkie_hurt_electric);
+        this.loadImages(this.Sharkie_Bubble_Attack);
         this.animate();
     }
 
@@ -193,8 +194,6 @@ class Character extends MovableObject {
                 this.ocean.play();
             }
 
-         
-
 
             this.world.camera_x = -this.x + 120;  //soweit wie der Fisch geschwommen ist, soll die Camera nach rechts verschoben werden
 
@@ -203,6 +202,11 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.Sharkie_isDead);
+            }
+
+            if (this.world.keyboard.D){
+                this.stopAnimation=true;
+                this.playAnimationOnce(this.Sharkie_Bubble_Attack)
             }
 
 
