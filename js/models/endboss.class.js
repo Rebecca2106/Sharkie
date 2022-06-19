@@ -6,8 +6,12 @@ class Endboss extends MovableObject {
     x;
     i = 0;
     lastAngry = 0;
-    speed = 0;
-    moveCounter = 10;
+    speed = 1;
+    otherDirection = false;
+    energy=50;
+    offset=100;
+    damage=30;
+
 
 
 
@@ -66,14 +70,14 @@ class Endboss extends MovableObject {
 
     }
 
-    introduced = false;  
-    angry =false;
-  
+    introduced = false;
+    angry = false;
+
 
     animate() {
-     
-   '     console.log(this.speed);'
-        console.log(this.angry);
+
+        // console.log(this.speed);
+        // console.log(this.angry);
         if (this.i < 10) {
             this.playAnimation(this.Endboss_Intro);
             this.intro.play();
@@ -81,16 +85,21 @@ class Endboss extends MovableObject {
 
         }
 
-        if (this.i >= 10 && this.angry==true) {
-            this.speed=1;
-            this.moveAutoLeft();
+        if (this.i >= 10 && this.angry == true) {
+            if (Math.random() < 0.2 && this.x > 200) {
+                this.speed = 1;
+                this.moveAutoLeft();    
+            }
             this.playAnimationOnce(this.Endboss_Attack);
             this.lastAngry = new Date().getTime();
+            if(this.x <200){
+                this.otherDirection=true;
+            }
         }
 
 
 
-        if (this.i >= 10 && this.angry==false) {
+        if (this.i >= 10 && this.angry == false) {
             this.playAnimation(this.Endboss_Swim);
 
         }
@@ -109,9 +118,9 @@ class Endboss extends MovableObject {
     }
 
     isAngry() {
-        
-            return this.angry=false;
-        }
-    
+
+        return this.angry = false;
+    }
+
 
 }

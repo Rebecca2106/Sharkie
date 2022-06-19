@@ -25,6 +25,7 @@ class World {
     keyboard;
     camera_x = 0;
     intro = false;
+    istThrown = false;
 
 
 
@@ -50,23 +51,65 @@ class World {
         setInterval(() => {
             this.checkEndbossActions();
             this.checkThrowObjects();
+            this.checkOutOfCanvas();
+            this.hitbybubble();
 
         }, 200)
     }
 
+    hitbybubble() {
+
+        this.throw_bubble.forEach((bubble) => {
+            this.level.enemies.forEach((enemie) => {
+                if (bubble.isHit(enemie)) {
+                    console.log('getroffen')
+                    enemie.loseEnergy(bubble);
+                    console.log(enemie.energy);
+                    if (enemie.isDead()) {
+                        //    animationen der toten Gegner fehlen noch
+                        let index = this.throw_bubble.indexOf(bubble);
+                        this.throw_bubble.splice(index, 1);
+                        let index2 = this.level.enemies.indexOf(enemie);
+                        this.level.enemies.splice(index2, 1)
+
+
+                    }
+
+                }
+            })
+        })
+
+    }
+
+
+
     checkThrowObjects() {
-        if(this.keyboard.D){
+        if (this.keyboard.D && this.istThrown == false) {
+            this.istThrown = true;
             setTimeout(() => {
-                let bubbleattack =new throwable_object('bubble',this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
+                let bubbleattack = new throwable_object('bubble', this.character.x + (this.character.offset * 1.5), this.character.y + this.character.offset, this.character.otherDirection);
                 this.throw_bubble.push(bubbleattack);
-            },400)
+                this.istThrown = false;
+            }, 400)
         }
-        if(this.keyboard.B){
+        if (this.keyboard.B && this.istThrown == false && (this.PoisonBar.startvalue - 0.10) > 0) {
+            this.PoisonBar.startvalue -= 0.10
+            this.istThrown = true;
             setTimeout(() => {
-                let bubbleattack =new throwable_object('PoisonedBubble',this.character.x+(this.character.offset*1.5), this.character.y+this.character.offset);
+                let bubbleattack = new throwable_object('PoisonedBubble', this.character.x + (this.character.offset * 1.5), this.character.y + this.character.offset, this.character.otherDirection);
                 this.throw_bubble.push(bubbleattack);
-            },400)
+                this.istThrown = false;
+            }, 400)
         }
+    }
+    checkOutOfCanvas() {
+        this.throw_bubble.forEach(bubble => {
+            if (bubble.x > 2500 || bubble.x < 0 || bubble.y > 500 || bubble.y < -100) {
+                let index = this.throw_bubble.indexOf(bubble);
+                this.throw_bubble.splice(index, 1)
+            }
+
+        });
     }
 
     checkEndbossActions() {
@@ -75,16 +118,19 @@ class World {
             this.endboss.introduced = true;
         }
 
-        if(this.character.x >= this.endboss.x - 380 &&  (Math.random() < 0.6)  && this.endboss.angry == false){
-            this.endboss.angry=true;
+        if (this.character.x >= this.endboss.x - 380 && this.character.x <= this.endboss.x && (Math.random() < 0.3) && this.endboss.angry == false) {
+            this.endboss.angry = true;
             this.endboss.animate();
-            setTimeout(this.endboss.isAngry(), 4000); 
+            setTimeout(() => {
+                this.endboss.angry = false;
+                this.endboss.speed = 0;
+            }, 2000);
         }
 
-        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced==true && this.endboss.angry ==false ){
+        if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced == true && this.endboss.angry == false) {
             this.endboss.animate();
         }
-        
+
 
 
     };
@@ -127,6 +173,7 @@ class World {
                     // console.log('Collision with Caracter', enemie)
                     this.character.loseEnergy(enemie);
                     console.log(this.character.energy)
+                    this.LifeBar.startvalue = (this.character.energy / 100);
                     if (this.character.isDead()) {
                         this.character.playAnimation(this.character.Sharkie_isDead)
                     }
@@ -146,9 +193,19 @@ class World {
                 }
             })
 
+            if (this.character.isColliding(this.endboss)) {
+                this.character.loseEnergy(this.endboss);
+                this.LifeBar.startvalue = (this.character.energy / 100);
+                if (this.character.isDead()) {
+                    this.character.playAnimation(this.character.Sharkie_isDead)
+                }
+            }
+            console.log('collision with Endboss');
+
+
         }, 1000);
 
-    
+
 
         // setInterval(() => {
         //     this.level.pufferfishes.forEach((pufferfish) =>{
@@ -206,7 +263,8 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
+
 
 
         if (mo.otherDirection) {
@@ -225,7 +283,7 @@ class World {
 
     }
 
-    drawStatusbar(object, x_position, y_position) { 
+    drawStatusbar(object, x_position, y_position) {
         this.ctx.drawImage(object.emptybar, x_position, 8, object.bar_size, object.bar_size * object.emptybar.height / object.emptybar.width);
         this.ctx.drawImage(object.fullbar, 120 + ((object.fullbar.width - 120) * (1 - object.startvalue)), 0, object.fullbar.width, object.fullbar.height, 120 * (object.bar_size / object.fullbar.width) + x_position, 8, object.bar_size, object.bar_size * object.fullbar.height / object.fullbar.width);
         this.drawSingleImage(object, x_position, y_position, 50, 50);

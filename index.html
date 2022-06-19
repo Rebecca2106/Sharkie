@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/4944d1bb43.js" crossorigin="anonymous"></script>
     <script src="js\models\world.class.js"></script>
     <script src="js\models\sound.js"></script>
     <script src="js\models\drawable-object.class.js"></script>
@@ -35,16 +36,26 @@
     <div class="bg">
         <h1>Sharkie</h1>
         <canvas id="canvas" width="720px" height="480px"></canvas>
-        <div id="level1" class="startscreen" style="display: flex;">
-            </div>
-            <div class="settings">
-              
-            </div>
+        <div id="settings-on-canvas">
+            <button class="btn">
+                <img id="fullscreen-1" onclick="toggleFullscreen(-1)" style="display: block;">
+            </button>
+            <div id="volume">
+            <i class="fa-solid fa-volume-high" onclick="toggleVolume(-1)" style="display: block;"></i>
         </div>
+
+
+        </div>
+        <div id="level1" class="startscreen" style="display: flex;">
+        </div>
+        <div class="settings">
+
+        </div>
+    </div>
     </div>
 
 
-  
+
     <!-- <input type="range" id="volume-control"> -->
 </body>
 

@@ -6,7 +6,6 @@ class Character extends MovableObject {
     y = 200;
     img;
     speed = 5;
-    otherDirection = false;
     offset =75;
 
 
@@ -202,9 +201,16 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.Sharkie_isDead);
+                setTimeout(()=>{
+                    console.log('stop');
+                    (function(w){w = w || window; var i = w.setInterval(function(){},100000); while(i>=0) { w.clearInterval(i--); }})(/*window*/);
+                        document.getElementById('level1').style.display = "block";
+                    showScreen();
+
+                },3000)
             }
 
-            if (this.world.keyboard.D || this.world.keyboard.B){
+            if (this.world.keyboard.D || this.world.keyboard.B && this.world.istThrown==true){
                 this.stopAnimation=true;
                 this.playAnimationOnce(this.Sharkie_Bubble_Attack)
             }
@@ -212,11 +218,16 @@ class Character extends MovableObject {
 
             else if (this.isHurt()) {
                 if (this.collison_with == "jellyfish") {
-                    this.hurt_electric.play();
+                    if (soundOn){
+                        this.hurt_electric.play();
+                    }
+                  
                     this.playAnimation(this.Sharkie_hurt_electric)
                 }
                 if (this.collison_with == "pufferfish") {
-                    this.hurt.play();
+                    if(soundOn){
+                        this.hurt.play();
+                    }
                     this.playAnimation(this.Sharkie_hurt_poisened)
                 }
             }
@@ -241,8 +252,10 @@ class Character extends MovableObject {
             }
 
             if (this.isLongIdle()){
-                this.playAnimation(this.Sharkie_Long_Idle)
-                this.snooze.play();
+                this.playAnimation(this.Sharkie_Long_Idle);
+                if(soundOn){
+                    this.snooze.play();
+                }              
             }
 
             

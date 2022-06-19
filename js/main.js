@@ -1,10 +1,12 @@
+let soundOn = true;
+
 function showScreen() {
     document.getElementById('canvas').style.display = "none";
-    document.getElementById('level1').innerHTML = `<p>Sharkie is the friendliest shark ever!<br>But he lives in a hostile environment.
+    document.getElementById('level1').innerHTML = `<div><p>Sharkie is the friendliest shark ever!<br>But he lives in a hostile environment.
     <br><br>All the other
     animals he encounters are deathly<br> dangerous for him. <br>
     Help Sharkie to fight again dangeorus jellyfishes <br>and defeat the endboss to survive!
-</p>      
+</p>  </div>    
 <div class="buttons">
 <button type="button" class="btn btn-outline-primary" onclick="showInstructions()">Instructions</button>
 <button type="button" class="btn btn-outline-primary"  onclick="startLevel()">Start game</button>
@@ -45,7 +47,7 @@ function showInstructions() {
 <div class="flex-center flex-center2">
 <button type="button" class="btn btn-secondary">b</button>
     <div class="relativ">
-        <img class="bubble" src="Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png">
+        <img class="bubble" src="Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/poisonedBubble.png">
         <p class="textbubble"> blow <br>poisoned <br>bubbles</p>
     </div>
 </div>
@@ -63,4 +65,21 @@ function startLevel() {
     document.getElementById('canvas').style.display = "block";
     init();
 
+}
+
+function toggleVolume() {
+    soundOn = !soundOn;
+    setVolumeIcon();
+  
+}
+
+
+
+function setVolumeIcon() {
+    if (soundOn) {
+        document.getElementById('volume').innerHTML = `<i class="fa-solid fa-volume-high" onclick="toggleVolume(-1)" style="display: block;"></i>`;
+        
+    } else {
+        document.getElementById('volume').innerHTML =`<i class="fa-solid fa-volume-xmark" onclick="toggleVolume(-1)" style="display: block;"></i>`;
+    }
 }
