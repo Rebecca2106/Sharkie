@@ -8,9 +8,13 @@ class Endboss extends MovableObject {
     lastAngry = 0;
     speed = 1;
     otherDirection = false;
-    energy=50;
-    offset=100;
-    damage=30;
+    energy = 10;
+    offset = 100;
+    damage = 30;
+    isHit = false;
+    dead = false;
+    speedY = 0.5;
+    acceleration = -0.2;
 
 
 
@@ -54,9 +58,25 @@ class Endboss extends MovableObject {
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/5.png',
         'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Attack/6.png',
 
-    ]
+    ];
+
+    Endboss_hurt = [
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/1.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/2.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/3.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Hurt/4.png',
+    ];
+
+    Endboss_dead = [
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+        'Alternative Grafiken - Sharkie/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
+    ];
 
     intro = new Audio('audio/Intro.mp3');
+    win = new Audio('audio/gewonnen.mp3');
 
 
 
@@ -65,6 +85,8 @@ class Endboss extends MovableObject {
         this.loadImages(this.Endboss_Intro);
         this.loadImages(this.Endboss_Swim);
         this.loadImages(this.Endboss_Attack);
+        this.loadImages(this.Endboss_hurt);
+        this.loadImages(this.Endboss_dead);
         this.x = 1500;
 
 
@@ -75,32 +97,45 @@ class Endboss extends MovableObject {
 
 
     animate() {
-
+        this.speed = 0;
         // console.log(this.speed);
         // console.log(this.angry);
         if (this.i < 10) {
             this.playAnimation(this.Endboss_Intro);
+            if (soundOn){
             this.intro.play();
-            this.lastAngry = new Date().getTime();
+            }
 
         }
 
-        if (this.i >= 10 && this.angry == true) {
+        if (this.i >= 10 && this.angry == true && this.isHit == false && this.dead == false) {
             if (Math.random() < 0.2 && this.x > 200) {
                 this.speed = 1;
-                this.moveAutoLeft();    
+                this.moveAutoLeft();
             }
             this.playAnimationOnce(this.Endboss_Attack);
-            this.lastAngry = new Date().getTime();
-            if(this.x <200){
-                this.otherDirection=true;
+            if (this.x < 200) {
+                this.otherDirection = true;
             }
+        }
+
+        if (this.i >= 10 && this.isHit == true && this.dead == false) {
+            this.playAnimation(this.Endboss_hurt)
         }
 
 
 
-        if (this.i >= 10 && this.angry == false) {
+        if (this.i >= 10 && this.angry == false && this.isHit == false && this.dead == false) {
             this.playAnimation(this.Endboss_Swim);
+
+        }
+
+        if (this.i >= 10 && this.angry == false && this.isHit == false && this.dead == true) {
+            this.playAnimation(this.Endboss_dead);
+            if (soundOn){
+            this.win.play();}
+            this.autoapplyGravity();
+
 
         }
         this.i++;

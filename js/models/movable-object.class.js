@@ -34,6 +34,13 @@ class MovableObject extends DrawableObject {
         }, 1000 / 45);
     }
 
+    autoapplyGravity(){
+        setInterval(() => {
+            this.y -= this.speedY;
+            this.speedY -= this.acceleration;
+        }, 1000 / 45);
+    }
+
     applyGravity() {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;

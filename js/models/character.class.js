@@ -6,7 +6,7 @@ class Character extends MovableObject {
     y = 200;
     img;
     speed = 5;
-    offset =75;
+    offset = 75;
 
 
 
@@ -32,39 +32,39 @@ class Character extends MovableObject {
 
         ];
 
-        Sharkie_Idle = [
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/1.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/2.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/3.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/4.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/5.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/6.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/7.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/8.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/9.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/10.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/11.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/12.png',
-            'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/13.png',
-        ];
+    Sharkie_Idle = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/3.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/4.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/5.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/6.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/7.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/8.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/9.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/10.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/11.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/12.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/1.IDLE/13.png',
+    ];
 
-        Sharkie_Long_Idle =[
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/1.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/2.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/3.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/4.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/5.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/6.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/7.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/8.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/9.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/10.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/11.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/12.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/13.png',
-           'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/14.png',
+    Sharkie_Long_Idle = [
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/1.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/2.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/3.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/4.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/5.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/6.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/7.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/8.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/9.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/10.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/11.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/12.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/13.png',
+        'Alternative Grafiken - Sharkie/1.Sharkie/2.Long_IDLE/14.png',
 
-        ];
+    ];
 
     Sharkie_isDead = [
         'Alternative Grafiken - Sharkie/1.Sharkie/6.dead/1.Poisoned/1.png',
@@ -104,7 +104,7 @@ class Character extends MovableObject {
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
         'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',  
+        'Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
     ]
 
 
@@ -112,11 +112,13 @@ class Character extends MovableObject {
     currentImage = 0;
     ocean = new Audio('audio/ocean.mp3');
     hurt = new Audio('audio/hurt.mp3');
-    snooze= new Audio('audio/snooze.mp3');
+    snooze = new Audio('audio/snooze.mp3');
     hurt_electric = new Audio('audio/hurt_electric.mp3');
     coin = new Audio('audio/collect.mp3');
     specialcoin = new Audio('audio/super_coin.mp3');
     poisoned = new Audio('audio/blubb.mp3');
+    lose = new Audio('audio/lose.mp3');
+    lose1 = new Audio('audio/lose1.mp3');
 
 
     constructor() {
@@ -142,29 +144,37 @@ class Character extends MovableObject {
         return timePassed > 5000;
     }
 
-    collect(collectable){
-      
-        if (collectable instanceof Coins || collectable instanceof special_coin ){
-            if (collectable instanceof Coins){
-                this.specialcoin.play();
+    collect(collectable) {
+
+        if (collectable instanceof Coins || collectable instanceof special_coin) {
+            if (collectable instanceof Coins) {
+                if (soundOn) {
+                    this.specialcoin.play();
+                }
+            
             }
-            else{
-                this.coin.play();
+            else {
+                if (soundOn) {
+                    this.coin.play();
+                }
+              
             }
-            this.world.CoinBar.startvalue +=1/collectable.value;
-            let index=this.world.level.coins.indexOf(collectable);
-            this.world.level.coins.splice(index,1);
+            this.world.CoinBar.startvalue += 1 / collectable.value;
+            let index = this.world.level.coins.indexOf(collectable);
+            this.world.level.coins.splice(index, 1);
         }
 
-        if (collectable instanceof Poison){
-            this.poisoned.play();
-            this.world.PoisonBar.startvalue += (collectable.value/4);
-            let index=this.world.level.poisions.indexOf(collectable);
-            this.world.level.poisions.splice(index,1);
+        if (collectable instanceof Poison) {
+            if (soundOn) {
+                this.poisoned.play();
+            }
+            this.world.PoisonBar.startvalue += (collectable.value / 4);
+            let index = this.world.level.poisions.indexOf(collectable);
+            this.world.level.poisions.splice(index, 1);
         }
-      
-    
-        
+
+
+
     }
 
     animate() {
@@ -174,23 +184,31 @@ class Character extends MovableObject {
             if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
                 this.moveRight();
-                this.ocean.play();
+                if (soundOn) {
+                    this.ocean.play();
+                }
             }
 
             if (this.world.keyboard.Left && this.x > 0) {
                 this.otherDirection = true;
                 this.moveLeft();
-                this.ocean.play();
+                if (soundOn) {
+                    this.ocean.play();
+                }
             }
             if (this.world.keyboard.Up && this.y > -80) {
                 this.y -= this.speed;
-                this.ocean.play();
+                if (soundOn) {
+                    this.ocean.play();
+                }
             }
 
 
             if (this.world.keyboard.Down && this.y < 380) {
                 this.y += this.speed;
-                this.ocean.play();
+                if (soundOn) {
+                    this.ocean.play();
+                }
             }
 
 
@@ -200,32 +218,37 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.Sharkie_isDead);
-                setTimeout(()=>{
-                    console.log('stop');
-                    (function(w){w = w || window; var i = w.setInterval(function(){},100000); while(i>=0) { w.clearInterval(i--); }})(/*window*/);
-                        document.getElementById('level1').style.display = "block";
-                    showScreen();
+                this.playAnimationOnce(this.Sharkie_isDead);
+                if (soundOn) {
+                    this.lose.play();
+                    this.lose1.play();
+                }
 
-                },3000)
+                setTimeout(() => {
+                    console.log('stop');
+                    (function (w) { w = w || window; var i = w.setInterval(function () { }, 100000); while (i >= 0) { w.clearInterval(i--); } })(/*window*/);
+                    showloseScreen();
+
+
+                }, 2000)
             }
 
-            if (this.world.keyboard.D || this.world.keyboard.B && this.world.istThrown==true){
-                this.stopAnimation=true;
+            if (this.world.keyboard.D || this.world.keyboard.B && this.world.istThrown == true) {
+                this.stopAnimation = true;
                 this.playAnimationOnce(this.Sharkie_Bubble_Attack)
             }
 
 
             else if (this.isHurt()) {
                 if (this.collison_with == "jellyfish") {
-                    if (soundOn){
+                    if (soundOn) {
                         this.hurt_electric.play();
                     }
-                  
+
                     this.playAnimation(this.Sharkie_hurt_electric)
                 }
                 if (this.collison_with == "pufferfish") {
-                    if(soundOn){
+                    if (soundOn) {
                         this.hurt.play();
                     }
                     this.playAnimation(this.Sharkie_hurt_poisened)
@@ -245,27 +268,27 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.snooze.pause();
-          
 
-            if (this.isIdle()){
+
+            if (this.isIdle()) {
                 this.playAnimation(this.Sharkie_Idle);
             }
 
-            if (this.isLongIdle()){
+            if (this.isLongIdle()) {
                 this.playAnimation(this.Sharkie_Long_Idle);
-                if(soundOn){
+                if (soundOn) {
                     this.snooze.play();
-                }              
+                }
             }
 
-            
+
 
 
         }, 1000 / 5); //wie schnell die Bilder ausgetauscht werden für die Animation => Flossenbewegung beim Schwimmen
-       
+
     }
 
-    
+
 
 
 

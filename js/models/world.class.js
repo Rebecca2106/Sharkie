@@ -53,6 +53,7 @@ class World {
             this.checkThrowObjects();
             this.checkOutOfCanvas();
             this.hitbybubble();
+            this.hitendboss();
 
         }, 200)
     }
@@ -61,22 +62,45 @@ class World {
 
         this.throw_bubble.forEach((bubble) => {
             this.level.enemies.forEach((enemie) => {
-                if (bubble.isHit(enemie)) {
-                    console.log('getroffen')
+                if (bubble.isHit(enemie) && enemie instanceof Jellyfish) {
+                    console.log('getroffen');
+                    let index = this.throw_bubble.indexOf(bubble);
+                    this.throw_bubble.splice(index, 1);
                     enemie.loseEnergy(bubble);
-                    console.log(enemie.energy);
                     if (enemie.isDead()) {
-                        //    animationen der toten Gegner fehlen noch
-                        let index = this.throw_bubble.indexOf(bubble);
-                        this.throw_bubble.splice(index, 1);
-                        let index2 = this.level.enemies.indexOf(enemie);
-                        this.level.enemies.splice(index2, 1)
-
-
+                        enemie.dead=true;
+                        let index2 = this.level.enemies.indexOf(enemie);  
+                        enemie.autoapplyGravity();             
+                        setTimeout(() => {
+                            this.level.enemies.splice(index2, 1)
+                        },2000)
                     }
-
                 }
             })
+        })
+    }
+
+    hitendboss(){
+        
+        this.throw_bubble.forEach((bubble) => {
+                if (bubble.isHit(this.endboss)) {
+                    let index = this.throw_bubble.indexOf(bubble);
+                    this.throw_bubble.splice(index, 1);
+                    console.log('endboss getroffen')
+                    this.endboss.loseEnergy(bubble);
+                    if (this.endboss.isDead()) {
+                        this.endboss.dead=true;
+                        this.endboss.animate();
+                    }
+                    else {
+                        this.endboss.isHit=true;
+                        this.endboss.animate();
+                        setTimeout(() => {
+                            this.endboss.isHit= false;
+                        }, 2000);
+                    }
+                }
+         
         })
 
     }
@@ -200,7 +224,6 @@ class World {
                     this.character.playAnimation(this.character.Sharkie_isDead)
                 }
             }
-            console.log('collision with Endboss');
 
 
         }, 1000);

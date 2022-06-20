@@ -27,28 +27,25 @@ class throwable_object extends MovableObject {
             this.damage = 10;
         };
         this.throw();
-        this.speedY = 2;
         this.acceleration = -0.00003;
         this.otherDirection = otherDirection
     }
 
     throw() {
-        this.speedY = 10;
+        this.speedY = 1;
         setInterval(() => {
             if (!this.otherDirection) {
-                this.i++;
+         
                 this.moveRight();
-                if (this.i > 35) {
-                    this.applyGravity();
-                }
+                this.applyGravity();
+             
             }
 
             else {
-                this.i++;
+        
                 this.moveLeft();
-                if (this.i > 35) {
-                    this.applyGravity();
-                }
+                this.applyGravity();
+                
             }
 
 

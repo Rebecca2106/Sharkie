@@ -73,13 +73,18 @@ function toggleVolume() {
   
 }
 
+function showloseScreen(){
+    document.getElementById('level1').style.display = "block";
+
+}
+
 
 
 function setVolumeIcon() {
     if (soundOn) {
-        document.getElementById('volume').innerHTML = `<i class="fa-solid fa-volume-high" onclick="toggleVolume(-1)" style="display: block;"></i>`;
+        document.getElementById('volume').innerHTML = `<button type="button" class="btn btn-info">  <i class="fa-solid fa-volume-high" onclick="toggleVolume(-1)" style="display: block;"></i></button>`;
         
     } else {
-        document.getElementById('volume').innerHTML =`<i class="fa-solid fa-volume-xmark" onclick="toggleVolume(-1)" style="display: block;"></i>`;
+        document.getElementById('volume').innerHTML =`<button type="button" class="btn btn-info"><i class="fa-solid fa-volume-xmark" onclick="toggleVolume(-1)" style="display: block;"></i></button>`;
     }
 }
