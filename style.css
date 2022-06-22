@@ -2,10 +2,18 @@ body {
  margin: 0;
 }
 
+@font-face {
+    font-family: Luckiest_Guy;
+    src: url('Alternative Grafiken - Sharkie/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf');
+ }
+
 canvas {
     position: relative;
 }
 
+.infos {
+    margin-top: 5px;
+}
 
 
 .bg{
@@ -21,10 +29,25 @@ canvas {
     align-items: center;
 }
 
+.intro{
+    /* font-family: Luckiest_Guy; */
+    padding-top: 8px;
+    padding-left: 30px;
+}
 
+.icons {
+    height: 30px;
+}
+
+.settings2 {
+    display: flex;
+    width: 720px;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
 
 .startscreen {
-    padding-left: 50px;
+
     position: absolute;
     flex-direction: column;
     justify-content: space-between;
@@ -41,6 +64,19 @@ canvas {
     justify-content: center; 
     gap: 20px;
     margin-bottom: 10px;
+    height: 100%;
+    align-items: end;
+}
+
+.settings{
+    display: flex;
+    gap: 5px
+}
+
+.tipps button{
+    height: 30px;
+    display: flex;
+    margin-right: 5px;
 }
 
 .big {

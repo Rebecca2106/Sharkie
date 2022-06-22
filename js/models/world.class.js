@@ -15,6 +15,7 @@ class World {
     PoisonBar = new Statusbar('poison', 0);
     LifeBar = new Statusbar('heart', 1);
     throw_bubble = [];
+    EndbossBar = new Statusbar('heart' ,1)
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
 
@@ -49,13 +50,15 @@ class World {
 
     cycle() {
         setInterval(() => {
+    
             this.checkEndbossActions();
             this.checkThrowObjects();
             this.checkOutOfCanvas();
             this.hitbybubble();
             this.hitendboss();
-
-        }, 200)
+            this.checkCollect();
+            
+        }, 1000/10)
     }
 
     hitbybubble() {
@@ -137,9 +140,11 @@ class World {
     }
 
     checkEndbossActions() {
-        if (this.character.x >= this.endboss.x - 580) {
+        if (this.character.x >= this.endboss.x - 580 && this.endboss.introduced == false) {
             this.endboss.animate();
-            this.endboss.introduced = true;
+            setTimeout(() => {
+                this.endboss.introduced = true;
+            }, 1000);
         }
 
         if (this.character.x >= this.endboss.x - 380 && this.character.x <= this.endboss.x && (Math.random() < 0.3) && this.endboss.angry == false) {
@@ -148,7 +153,7 @@ class World {
             setTimeout(() => {
                 this.endboss.angry = false;
                 this.endboss.speed = 0;
-            }, 2000);
+            }, 1000);
         }
 
         if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced == true && this.endboss.angry == false) {
@@ -181,14 +186,6 @@ class World {
         }, 1000);
     }
 
-    // checkAnimationCoins(){
-    //     setInterval(() => {
-    //         this.level.coins.forEach((coin) => {
-    //             if (coin instanceof special_coin && this.character.x - coin.x <300){
-    //             this.level.coins.applyGravity();}
-    //         })
-    //     },2000)
-    // }
 
     checkCollisions() {
         setInterval(() => {
@@ -224,30 +221,30 @@ class World {
                     this.character.playAnimation(this.character.Sharkie_isDead)
                 }
             }
-
-
         }, 1000);
-
-
-
-        // setInterval(() => {
-        //     this.level.pufferfishes.forEach((pufferfish) =>{
-        //         if (this.character.isColliding(pufferfish)){
-        //             console.log('Collision with Caracter', pufferfish)
-        //             this.character.loseEnergy(pufferfish);
-        //             console.log(this.character.energy)
-        //             if (this.character.isDead()){
-        //                 this.character.playAnimation(this.character.Sharkie_isDead)
-
-        //             }
-        //         }
-
-        //     })
-
-        // },1000)
     }
 
+    checkCollect() {
+                this.level.coins.forEach((coin) => {
+                    if (this.character.isColliding(coin)) {
+                        console.log('collision with coin');
+                        this.character.collect(coin)
+                    }
+                })
+    
+                this.level.poisions.forEach((poision) => {
+                    if (this.character.isColliding(poision)) {
+                        console.log('collision with poision');
+                        this.character.collect(poision)
+                    }
+                })             
+    }
+    
+
+
+
     draw() {
+   
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //sonst würde der Hai mehrmals auftauchen, wenn er an einer anderen Stelle nochmal aufgerufen wird oder sich bewegen soll
         this.ctx.translate(this.camera_x, 0) // verschiebung von der x und y-achse
         this.addObjectsToMap(this.level.backgroundObjects)

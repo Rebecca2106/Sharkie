@@ -109,11 +109,11 @@ class Endboss extends MovableObject {
         }
 
         if (this.i >= 10 && this.angry == true && this.isHit == false && this.dead == false) {
-            if (Math.random() < 0.2 && this.x > 200) {
-                this.speed = 1;
+            this.playAnimationOnce(this.Endboss_Attack);
+            if (Math.random() < 0.4 && this.x > 200) {
+                this.speed = 2;
                 this.moveAutoLeft();
             }
-            this.playAnimationOnce(this.Endboss_Attack);
             if (this.x < 200) {
                 this.otherDirection = true;
             }
@@ -136,6 +136,13 @@ class Endboss extends MovableObject {
             this.win.play();}
             this.autoapplyGravity();
 
+            setTimeout(() => {
+                console.log('stop');
+                (function (w) { w = w || window; var i = w.setInterval(function () { }, 100000); while (i >= 0) { w.clearInterval(i--); } })(/*window*/);
+                showWinScreen();
+
+
+            }, 2000)
 
         }
         this.i++;
@@ -152,10 +159,6 @@ class Endboss extends MovableObject {
 
     }
 
-    isAngry() {
-
-        return this.angry = false;
-    }
 
 
 }

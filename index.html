@@ -35,27 +35,32 @@
     <div class="bg">
         <h1>Sharkie</h1>
         <canvas id="canvas" width="720px" height="480px"></canvas>
-        <div id="settings-on-canvas">
-            <button class="btn">
+            <div class="settings2">
+            <div class="settings">
+                <button class="btn">
                 <img id="fullscreen-1" onclick="toggleFullscreen(-1)" style="display: block;">
-            </button>
-            <div id="volume">
-                <button type="button" class="btn btn-info"> <i class="fa-solid fa-volume-high" onclick="toggleVolume(-1)" style="display: block;"></i></button>
+                </button>
+                    <div id="volume">
+                        <button type="button" class="btn btn-info"> <i class="fa-solid fa-volume-high"
+                        onclick="toggleVolume(-1)" style="display: block;"></i></button>
+                    </div>
+                        
+                        <div class="tipps">
+                            <button type="button" class="btn btn-info" onclick="showInfo()"><i class="fa-solid fa-circle-info"></i> </button>
+                        </div>
+                    </div> 
+                    <div id="infos" class="infos" style="display: none;">
+                    <img class="icons" src="Alternative Grafiken - Sharkie/6.Botones/Key/arrow keys.png"> <b>Move Sharkie</b>
+                    <img class="icons" src="Alternative Grafiken - Sharkie/6.Botones/Key/Space Bar key.png"> <b>Fin slap</b>
+                    <img class="icons" src="Alternative Grafiken - Sharkie/6.Botones/Key/D key.png"> <b>Bubble</b>
+                    <img class="icons" src="Alternative Grafiken - Sharkie/3. Background/B key.png"><b> Poison</b>
+                        </div>
+                </div>
+                    <div id="level1" class="startscreen" style="display: flex;">
+                </div>
+            </div>
+            
         </div>
-
-
-        </div>
-        <div id="level1" class="startscreen" style="display: flex;">
-        </div>
-        <div class="settings">
-
-        </div>
-    </div>
-    </div>
-
-
-
-    <!-- <input type="range" id="volume-control"> -->
+        
 </body>
-
 </html>
