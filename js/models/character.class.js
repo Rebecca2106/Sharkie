@@ -7,6 +7,7 @@ class Character extends MovableObject {
     img;
     speed = 5;
     offset = 75;
+    damage =10;
 
 
 

@@ -7,6 +7,7 @@ class Pufferfish extends MovableObject {
     puffered;
     offset=5;
     energy=10;
+    dead= false;
     
 
 

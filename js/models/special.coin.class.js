@@ -7,6 +7,7 @@ class special_coin extends MovableObject {
     acceleration = 0.2;
     randomDirection = Math.random() < 0.5;
     value=20;
+    offset=0;
 
     falling_Coin = [
         'Alternative Grafiken - Sharkie/4. Marcadores/2.coins/1.png',

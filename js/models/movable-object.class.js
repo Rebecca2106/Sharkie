@@ -85,10 +85,10 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(mo) {
-        return this.x + this.width - (this.offset/(1.5)) > mo.x &&
-            this.y - (this.offset / 4) + this.height > mo.y &&
-            this.x + (this.offset / 3) < mo.x + mo.width &&
-            this.y + this.offset < mo.y + mo.height
+        return this.x + this.width - (this.offset/(1.5)) > (mo.x -mo.offset) &&
+            this.y - (this.offset / 4) + this.height > (mo.y - mo.offset) &&
+            this.x + (this.offset / 3) < (mo.x + mo.width - mo.offset) &&
+            this.y + this.offset < (mo.y + mo.height-mo.offset)
     }
 
     isHit(enemie) {

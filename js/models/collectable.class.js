@@ -4,6 +4,7 @@ class Coins extends MovableObject {
     height =30;
     speed =20;
     value= 4;
+    offset=0;
 
 
 
