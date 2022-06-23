@@ -148,8 +148,14 @@ class World {
                         console.log(enemie, enemie.energy);
                         if (enemie.isDead()) {
                             enemie.dead = true;
-                            let index = this.level.enemies.indexOf(enemie);
-                            enemie.playAnimation(this.character.Sharkie_isDead)
+                            enemie.animateDead()
+                         
+                            setTimeout(() => {
+                                let index = this.level.enemies.indexOf(enemie);
+                                this.level.enemies.splice(index,1) 
+                            },8000)
+                          
+                        
                         }
                     }
                 })}
