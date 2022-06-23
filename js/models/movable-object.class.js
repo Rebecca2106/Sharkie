@@ -22,6 +22,12 @@ class MovableObject extends DrawableObject {
         this.x += this.speed;           //Schablone welche Felder zu einen objekt gehören sollen
     }
 
+    automoveRight(){
+        setInterval(() => {
+            this.x += this.speed;  
+        }, 1000 / 45);
+    }
+
     moveLeft() {
         this.x -= this.speed;
     }
@@ -85,8 +91,8 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(mo) {
-        return this.x + this.width - (this.offset/(1.5)) > (mo.x -mo.offset) &&
-            this.y - (this.offset / 4) + this.height > (mo.y - mo.offset) &&
+        return this.x + this.width - (this.offset/(1.5)) > (mo.x + mo.offset) &&
+            this.y - (this.offset / 4) + this.height > (mo.y + mo.offset) &&
             this.x + (this.offset / 3) < (mo.x + mo.width - mo.offset) &&
             this.y + this.offset < (mo.y + mo.height-mo.offset)
     }

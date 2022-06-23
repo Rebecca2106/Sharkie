@@ -8,7 +8,7 @@ class Endboss extends MovableObject {
     lastAngry = 0;
     speed = 1;
     otherDirection = false;
-    energy = 10;
+    energy = 50;
     offset = 100;
     damage = 30;
     isHit = false;

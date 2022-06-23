@@ -8,6 +8,8 @@ class Pufferfish extends MovableObject {
     offset = 5;
     energy = 10;
     dead = false;
+    speedY =0.5;
+    acceleration =-0.2;
 
 
 
@@ -48,6 +50,8 @@ class Pufferfish extends MovableObject {
     if (this.dead == true) {
         console.log('tot')
         this.playAnimationOnce(this.Pufferfish_dead);
+        this.autoapplyGravity();
+        this.automoveRight();
 
     }
   }
@@ -72,7 +76,7 @@ class Pufferfish extends MovableObject {
 
         setInterval(() => {
       
-            if (this.puffered == true) {
+            if (this.puffered == true && this.dead == false) {
                 this.playAnimation(this.Pufferfish_Transition)
             }
             if (this.dead == false) {

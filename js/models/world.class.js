@@ -15,7 +15,7 @@ class World {
     PoisonBar = new Statusbar('poison', 0);
     LifeBar = new Statusbar('heart', 1);
     throw_bubble = [];
-    EndbossBar = new Statusbar('heart', 1)
+    EndbossBar = new Statusbar('boss', 1)
     // LifeBar= new Statusbar(-100,60,'Lifebar',150);
     // PoisonBar = new Statusbar(-100,35,'poison',50);
 
@@ -92,6 +92,7 @@ class World {
                 this.throw_bubble.splice(index, 1);
                 console.log('endboss getroffen')
                 this.endboss.loseEnergy(bubble);
+                this.EndbossBar.startvalue = (this.endboss.energy / 50);
                 if (this.endboss.isDead()) {
                     this.endboss.dead = true;
                     this.endboss.animate();
@@ -214,7 +215,7 @@ checkdistance() {
 checkCollisions() {
     setInterval(() => {
         this.level.enemies.forEach((enemie) => {
-            if (this.character.isColliding(enemie)) {
+            if (this.character.isColliding(enemie) && !this.keyboard.Space) {
                 // console.log('Collision with Caracter', enemie)
                 this.character.loseEnergy(enemie);
                 console.log(this.character.energy)
@@ -222,19 +223,6 @@ checkCollisions() {
                 if (this.character.isDead()) {
                     this.character.playAnimation(this.character.Sharkie_isDead)
                 }
-            }
-        })
-        this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
-                console.log('collision with coin');
-                this.character.collect(coin)
-            }
-        })
-
-        this.level.poisions.forEach((poision) => {
-            if (this.character.isColliding(poision)) {
-                console.log('collision with poision');
-                this.character.collect(poision)
             }
         })
 
@@ -320,8 +308,9 @@ addTomap(mo) {
 
 drawAllBars() {
     this.drawStatusbar(this.LifeBar, 0, 0);
-    this.drawStatusbar(this.CoinBar, 400, 5);
-    this.drawStatusbar(this.PoisonBar, 200, 0);
+    this.drawStatusbar(this.CoinBar, 300, 5);
+    this.drawStatusbar(this.PoisonBar, 150, 0);
+    this.drawStatusbar(this.EndbossBar,550,2)
 
 
 
