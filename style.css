@@ -39,7 +39,11 @@ canvas {
     height: 30px;
 }
 
+.winscreen {
+margin-top: 16px;}
+
 .settings2 {
+    height: 40px;
     display: flex;
     width: 720px;
     margin-top: 10px;

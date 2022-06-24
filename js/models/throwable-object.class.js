@@ -1,7 +1,7 @@
 class throwable_object extends MovableObject {
 
 
-    speed = 5;
+    speed = 8;
     speedY;
     acceleration;
     height = 35;

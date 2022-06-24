@@ -150,12 +150,14 @@ class Character extends MovableObject {
         if (collectable instanceof Coins || collectable instanceof special_coin) {
             if (collectable instanceof Coins) {
                 if (soundOn) {
+                    this.specialcoin.volume = 0.2;
                     this.specialcoin.play();
                 }
             
             }
             else {
                 if (soundOn) {
+                    this.coin.volume = 0.2;
                     this.coin.play();
                 }
               
@@ -167,6 +169,7 @@ class Character extends MovableObject {
 
         if (collectable instanceof Poison) {
             if (soundOn) {
+                this.poisoned.volume = 0.2;
                 this.poisoned.play();
             }
             this.world.PoisonBar.startvalue += (collectable.value / 4);
@@ -187,6 +190,7 @@ class Character extends MovableObject {
                 this.moveRight();
                 if (soundOn) {
                     this.ocean.play();
+                    this.ocean.volume = 0.2;
                 }
             }
 
@@ -194,7 +198,9 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.moveLeft();
                 if (soundOn) {
+                    this.ocean.volume = 0.2;
                     this.ocean.play();
+                   
                 }
             }
             if (this.world.keyboard.Up && this.y > -80) {
@@ -221,6 +227,8 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimationOnce(this.Sharkie_isDead);
                 if (soundOn) {
+                    this.lose.volume = 0.2;
+                    this.lose1.volume = 0.2;
                     this.lose.play();
                     this.lose1.play();
                 }
@@ -243,13 +251,16 @@ class Character extends MovableObject {
             else if (this.isHurt()) {
                 if (this.collison_with == "jellyfish") {
                     if (soundOn) {
+                        this.hurt_electric.volume = 0.2;
                         this.hurt_electric.play();
+                       
                     }
 
                     this.playAnimation(this.Sharkie_hurt_electric)
                 }
                 if (this.collison_with == "pufferfish") {
                     if (soundOn) {
+                        this.hurt.volume = 0.2;
                         this.hurt.play();
                     }
                     this.playAnimation(this.Sharkie_hurt_poisened)
@@ -278,7 +289,9 @@ class Character extends MovableObject {
             if (this.isLongIdle()) {
                 this.playAnimation(this.Sharkie_Long_Idle);
                 if (soundOn) {
+                    this.snooze.volume = 0.2;
                     this.snooze.play();
+                
                 }
             }
 

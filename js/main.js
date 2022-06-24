@@ -46,7 +46,7 @@ function showInstructions() {
                                                                     <div class="flex-center flex-center2">
                                                                         <button type="button" class="btn btn-secondary">b</button>
                                                                             <div class="relativ">
-                                                                                <img class="bubble" src="Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/poisonedBubble.png">
+                                                                                <img class="bubble" src="Alternative Grafiken - Sharkie/1.Sharkie/4.Attack/Bubble trap/PoisonedBubble.png">
                                                                                 <p class="textbubble"> blow <br>poisoned <br>bubbles</p>
                                                                             </div>
                                                                         </div>

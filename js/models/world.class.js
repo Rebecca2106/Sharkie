@@ -67,7 +67,7 @@ class World {
         this.throw_bubble.forEach((bubble) => {
             this.level.enemies.forEach((enemie) => {
                 if (bubble.isHit(enemie) && enemie instanceof Jellyfish) {
-                    console.log('getroffen');
+                    // console.log('getroffen');
                     let index = this.throw_bubble.indexOf(bubble);
                     this.throw_bubble.splice(index, 1);
                     enemie.loseEnergy(bubble);
@@ -85,17 +85,21 @@ class World {
     }
 
     hitendboss() {
-
         this.throw_bubble.forEach((bubble) => {
             if (bubble.isHit(this.endboss)) {
                 let index = this.throw_bubble.indexOf(bubble);
                 this.throw_bubble.splice(index, 1);
-                console.log('endboss getroffen')
+                // console.log('endboss getroffen')
                 this.endboss.loseEnergy(bubble);
                 this.EndbossBar.startvalue = (this.endboss.energy / 50);
                 if (this.endboss.isDead()) {
                     this.endboss.dead = true;
                     this.endboss.animate();
+                    setTimeout(() => {
+                        // console.log('stop');
+                        (function (w) { w = w || window; var i = w.setInterval(function () { }, 100000); while (i >= 0) { w.clearInterval(i--); } })(/*window*/);
+                        showloseScreen();
+                    }, 2000)
                 }
                 else {
                     this.endboss.isHit = true;
@@ -105,9 +109,7 @@ class World {
                     }, 2000);
                 }
             }
-
         })
-
     }
 
 
@@ -116,10 +118,10 @@ class World {
         if (this.keyboard.D && this.istThrown == false) {
             this.istThrown = true;
             setTimeout(() => {
-                let bubbleattack = new throwable_object('bubble', this.character.x + (this.character.offset * 1.5), this.character.y + this.character.offset, this.character.otherDirection);
+                let bubbleattack = new throwable_object('Bubble', this.character.x + (this.character.offset * 1.5), this.character.y + this.character.offset, this.character.otherDirection);
                 this.throw_bubble.push(bubbleattack);
                 this.istThrown = false;
-            }, 400)
+            }, 500)
         }
         if (this.keyboard.B && this.istThrown == false && (this.PoisonBar.startvalue - 0.10) > 0) {
             this.PoisonBar.startvalue -= 0.10
@@ -128,12 +130,21 @@ class World {
                 let bubbleattack = new throwable_object('PoisonedBubble', this.character.x + (this.character.offset * 1.5), this.character.y + this.character.offset, this.character.otherDirection);
                 this.throw_bubble.push(bubbleattack);
                 this.istThrown = false;
-            }, 400)
+            }, 500)
         }
     }
     checkOutOfCanvas() {
         this.throw_bubble.forEach(bubble => {
             if (bubble.x > 2500 || bubble.x < 0 || bubble.y > 500 || bubble.y < -100) {
+                let index = this.throw_bubble.indexOf(bubble);
+                this.throw_bubble.splice(index, 1)
+            }
+
+            if(bubble.x - this.character.x > 600 && !this.character.otherDirection){
+                let index = this.throw_bubble.indexOf(bubble);
+                this.throw_bubble.splice(index, 1)
+            }
+            if((this.character.x - bubble.x) >300 && this.character.otherDirection){
                 let index = this.throw_bubble.indexOf(bubble);
                 this.throw_bubble.splice(index, 1)
             }
@@ -146,17 +157,14 @@ class World {
                 this.level.enemies.forEach((enemie) => {
                     if (enemie instanceof Pufferfish && this.character.isColliding(enemie)) {
                         enemie.loseEnergy(this.character);
-                        console.log(enemie, enemie.energy);
+                        // console.log(enemie, enemie.energy);
                         if (enemie.isDead()) {
                             enemie.dead = true;
                             enemie.animateDead()
-                         
                             setTimeout(() => {
                                 let index = this.level.enemies.indexOf(enemie);
                                 this.level.enemies.splice(index,1) 
                             },8000)
-                          
-                        
                         }
                     }
                 })}
@@ -172,7 +180,7 @@ checkEndbossActions() {
         }, 1000);
     }
 
-    if (this.character.x >= this.endboss.x - 380 && this.character.x <= this.endboss.x && (Math.random() < 0.3) && this.endboss.angry == false) {
+    if (this.character.x < this.endboss.x  && (Math.random() < 0.3) && this.endboss.angry == false && this.endboss.introduced==true) {
         this.endboss.angry = true;
         this.endboss.animate();
         setTimeout(() => {
@@ -184,15 +192,11 @@ checkEndbossActions() {
     if (this.character.x >= this.endboss.x - 480 && this.endboss.introduced == true && this.endboss.angry == false) {
         this.endboss.animate();
     }
-
-
-
 };
 
 newEnemies() {
     setInterval(() => {
         world.bubbles.push(new Bubble)
-
     }, 3000);
 }
 
@@ -202,12 +206,8 @@ checkdistance() {
         // console.log(this.level.bubbles[1].x);
         this.level.enemies.forEach((enemie) => {
             if (this.character.isNextto(enemie)) {
-
-
-
             }
         })
-
     }, 1000);
 }
 
@@ -218,10 +218,15 @@ checkCollisions() {
             if (this.character.isColliding(enemie) && !this.keyboard.Space) {
                 // console.log('Collision with Caracter', enemie)
                 this.character.loseEnergy(enemie);
-                console.log(this.character.energy)
+                // console.log(this.character.energy)
                 this.LifeBar.startvalue = (this.character.energy / 100);
                 if (this.character.isDead()) {
                     this.character.playAnimation(this.character.Sharkie_isDead)
+                    setTimeout(() => {
+                        // console.log('stop');
+                        (function (w) { w = w || window; var i = w.setInterval(function () { }, 100000); while (i >= 0) { w.clearInterval(i--); } })(/*window*/);
+                        showloseScreen();
+                    }, 2000)
                 }
             }
         })
@@ -239,14 +244,14 @@ checkCollisions() {
 checkCollect() {
     this.level.coins.forEach((coin) => {
         if (this.character.isColliding(coin)) {
-            console.log('collision with coin');
+            // console.log('collision with coin');
             this.character.collect(coin)
         }
     })
 
     this.level.poisions.forEach((poision) => {
         if (this.character.isColliding(poision)) {
-            console.log('collision with poision');
+            // console.log('collision with poision');
             this.character.collect(poision)
         }
     })
@@ -295,9 +300,7 @@ addTomap(mo) {
     }
 
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
-
-
+    // mo.drawFrame(this.ctx);
 
     if (mo.otherDirection) {
         this.flipImageBack(mo);
@@ -311,9 +314,6 @@ drawAllBars() {
     this.drawStatusbar(this.CoinBar, 300, 5);
     this.drawStatusbar(this.PoisonBar, 150, 0);
     this.drawStatusbar(this.EndbossBar,550,2)
-
-
-
 }
 
 drawStatusbar(object, x_position, y_position) {
@@ -339,9 +339,6 @@ flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
 }
-
-
-
 }
 
 

@@ -110,7 +110,7 @@ class MovableObject extends DrawableObject {
 
     isNextto(mo) {
         if (mo instanceof Pufferfish && mo.otherDirection == false) {
-            if (((this.x + this.width) - mo.x < 50) && ((this.x + this.width) - mo.x > 0)) {
+            if (((this.x + this.width) - mo.x < 100) && ((this.x + this.width) - mo.x > 0)) {
                 mo.puffered = true;
                 console.log('next to pufferfish')
             }

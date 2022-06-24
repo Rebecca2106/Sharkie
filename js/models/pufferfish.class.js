@@ -79,7 +79,7 @@ class Pufferfish extends MovableObject {
             if (this.puffered == true && this.dead == false) {
                 this.playAnimation(this.Pufferfish_Transition)
             }
-            if (this.dead == false) {
+            if (this.dead == false && this.puffered == false) {
                 this.playAnimation(this.Pufferfish_Swim)
             }
 

@@ -103,7 +103,9 @@ class Endboss extends MovableObject {
         if (this.i < 10) {
             this.playAnimation(this.Endboss_Intro);
             if (soundOn){
+            this.intro.volume = 0.2;
             this.intro.play();
+          
             }
 
         }
@@ -133,6 +135,7 @@ class Endboss extends MovableObject {
         if (this.i >= 10 && this.angry == false && this.isHit == false && this.dead == true) {
             this.playAnimation(this.Endboss_dead);
             if (soundOn){
+                this.win.volume =0.2;
             this.win.play();}
             this.autoapplyGravity();
 
